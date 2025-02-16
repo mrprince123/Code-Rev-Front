@@ -9,9 +9,18 @@ import toast, { Toaster } from "react-hot-toast";
 const UserUpdate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // Go Back
+  const handleCancel = () => {
+    navigate(-1); // Go back to the previous page
+  };
+
   // Fetch the Profile Details
   const [name, setName] = useState<string>("");
-  const [profilePicture, setProfilePicture] = useState<string>("");
+  // const [profilePicture, setProfilePicture] = useState<string>("");
+  const [profilePicture, setProfilePicture] = useState<any>(null);
+  const [profilePicturePreview, setProfilePicturePreview] =
+    useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [role, setRole] = useState<string>("");
   const [about, setAbout] = useState<string>("");
@@ -39,19 +48,40 @@ const UserUpdate = () => {
     getProfileDetails();
   }, []);
 
+  // Handle File Selection
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setProfilePicture(file);
+      setProfilePicturePreview(URL.createObjectURL(file)); // Generate preview
+    }
+  };
+
   // Send the Updated Value to the Backend
   const updateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Append all data to the form
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("gender", gender);
+    formData.append("role", role);
+    formData.append("about", about);
+    if (profilePicture) {
+      formData.append("profilePicture", profilePicture); // Only append if a file is selected
+    }
+
     try {
       const url = `${baseUrl}/user/update`;
-      const response = await axios.put(
-        url,
-        { name, email, gender, profilePicture, role, about },
-        { withCredentials: true }
-      );
+      const response = await axios.put(url, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
 
       // Dispatch profile update to Redux store
       dispatch(profileUpdate({ user: response.data.data }));
+
       console.log("Response while Updating ", response);
       toast.success(response.data.message);
       navigate("/profile");
@@ -65,10 +95,10 @@ const UserUpdate = () => {
     <div className="flex flex-col sm:flex-row gap-6 mt-20 mb-20 px-4 sm:px-0">
       {/* Profile Update Section */}
       <section className="bg-white rounded-lg w-full sm:w-2/3">
-        <div className="max-w-4xl px-4 py-4 sm:px-6 lg:px-8 mx-auto">
+        <div className="max-w-4xl p-2 mx-auto">
           <div className="bg-white rounded-xl p-4 sm:p-7 dark:bg-neutral-800">
             <div className="mb-8">
-              <h2 className="text-xl font-bold text-gray-800 dark:text-neutral-200">
+              <h2 className="text-2xl mb-2 font-bold text-gray-800 dark:text-neutral-200">
                 Profile
               </h2>
               <p className="text-sm text-gray-600 dark:text-neutral-400">
@@ -88,17 +118,20 @@ const UserUpdate = () => {
                   <div className="flex items-center gap-5">
                     <img
                       className="inline-block size-16 object-cover rounded-full ring-2 ring-white dark:ring-neutral-900"
-                      src={profilePicture}
-                      alt="Avatar"
+                      src={
+                        profilePicturePreview ||
+                        `http://localhost:5000${profilePicture}`
+                      }
+                      alt="User Profile Image"
                     />
                     <div className="flex w-full">
                       <input
                         id="af-account-email"
-                        type="url"
-                        value={profilePicture}
-                        onChange={(e) => setProfilePicture(e.target.value)}
+                        type="file"
+                        onChange={handleFileChange}
                         className="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm text-sm rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                         placeholder="profilepic/url"
+                        accept="image/*"
                       />
                     </div>
                   </div>
@@ -256,6 +289,7 @@ const UserUpdate = () => {
               <div className="mt-5 flex justify-end gap-x-2">
                 <button
                   type="button"
+                  onClick={handleCancel}
                   className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
                 >
                   Cancel

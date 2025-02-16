@@ -23,7 +23,7 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       const url = `${baseUrl}/auth/logout`;
-      const response = await axios.get(url, {}, { withCredentials: true });
+      const response = await axios.get(url, { withCredentials: true });
       console.log("Reponse while logout ", response);
       navigate("/");
       toast.success(response.data.message);
@@ -65,7 +65,7 @@ const Header = () => {
                 <NavLink to="/profile">
                   <img
                     className="h-10 w-10 rounded-full object-cover"
-                    src={userProfilePic}
+                    src={`http://localhost:5000${user?.profilePicture}`}
                     alt="Profile"
                   />
                 </NavLink>

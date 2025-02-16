@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import FullCodePic from "../assets/fullCodePic.png";
 
 const Home = () => {
@@ -39,8 +40,8 @@ const Home = () => {
             Improve your code quality with AI-powered and peer reviews. Share,
             collaborate, and enhance your coding skills effortlessly.
           </p>
-          <a
-            href="javascript:;"
+          <NavLink
+            to="/register"
             className="w-full md:w-auto mb-14 inline-flex items-center justify-center py-3 px-7 text-base font-semibold text-center text-white rounded-full bg-black shadow-xs hover:bg-gray-700 transition-all duration-500"
           >
             Create an Account
@@ -60,7 +61,7 @@ const Home = () => {
                 strokeLinejoin="round"
               />
             </svg>
-          </a>
+          </NavLink>
           <div className="flex justify-center">
             <img
               src={FullCodePic}
@@ -453,12 +454,12 @@ const Home = () => {
               reviews, detailed feedback, and best practice suggestions.{" "}
             </p>
             <div className="flex flex-col justify-center md:flex-row gap-5 max-w-lg mx-auto md:max-w-2xl lg:max-w-full">
-              <a
-                href="javascript:;"
+              <NavLink
+                to="/submit-code"
                 className="cursor-pointer bg-indigo-600 py-3 px-6 rounded-full flex items-center justify-center text-sm font-semibold text-white transition-all duration-500 focus:outline-none hover:bg-indigo-700"
               >
                 Submit Your Code
-              </a>
+              </NavLink>
               <a
                 href="javascript:;"
                 className="cursor-pointer bg-indigo-50 py-3 px-6 rounded-full flex items-center justify-center  text-sm font-semibold text-indigo-600 transition-all duration-500 focus:outline-none hover:bg-indigo-100"
