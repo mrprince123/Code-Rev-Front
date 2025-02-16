@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { baseUrl } from "../App";
@@ -10,6 +10,8 @@ export function LoginForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const dispatch = useDispatch();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ export function LoginForm() {
       dispatch(
         login({ user: response.data.data, token: response.data.accessToken })
       );
-      navigate("/");
+      navigate(from, { replace: true });
     } catch (error) {
       console.error("Login failed", error);
     }

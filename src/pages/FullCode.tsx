@@ -21,6 +21,13 @@ import { java } from "@codemirror/lang-java";
 import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
 import { cpp } from "@codemirror/lang-cpp";
+import { php } from "@codemirror/lang-php";
+import { sql } from "@codemirror/lang-sql";
+import { markdown } from "@codemirror/lang-markdown";
+import { xml } from "@codemirror/lang-xml";
+import { json } from "@codemirror/lang-json";
+import { rust } from "@codemirror/lang-rust";
+import { go } from "@codemirror/lang-go";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -177,10 +184,10 @@ const FullCode = () => {
     }
   };
 
-  // Handle Language Detech
+  // Language Selection
   const getLanguageExtension = () => {
     switch (codeDetails.language) {
-      case "Javascript":
+      case "JavaScript":
         return [javascript()];
       case "Python":
         return [python()];
@@ -190,8 +197,23 @@ const FullCode = () => {
         return [html()];
       case "CSS":
         return [css()];
-      case "C Language":
+      case "C":
+      case "C++":
         return [cpp()];
+      case "PHP":
+        return [php()];
+      case "SQL":
+        return [sql()];
+      case "Markdown":
+        return [markdown()];
+      case "XML":
+        return [xml()];
+      case "JSON":
+        return [json()];
+      case "Rust":
+        return [rust()];
+      case "Go":
+        return [go()];
       default:
         return [];
     }

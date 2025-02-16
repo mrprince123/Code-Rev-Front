@@ -25,6 +25,7 @@
     "@radix-ui/react-slot": "^1.1.2",
     "@reduxjs/toolkit": "^2.5.1",
     "@uiw/codemirror-extensions-color": "^4.23.8",
+    "@uiw/codemirror-extensions-langs": "^4.23.8",
     "@uiw/codemirror-theme-okaidia": "^4.23.8",
     "@uiw/codemirror-theme-vscode": "^4.23.8",
     "@uiw/codemirror-themes": "^4.23.8",

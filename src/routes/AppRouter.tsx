@@ -14,28 +14,40 @@ import UserUpdate from "../pages/UserUpdate";
 import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 import PrivacyPolicy from "../pages/Extras/PrivacyPolicy";
+import AuthRedirectGuard from "../guards/AuthRedirectGuard";
+import AuthGuard from "../guards/AuthGuard";
 
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
+        {/* Public  Route  */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/codes" element={<Codes />} />
-          <Route path="/your-code" element={<YourCodes />} />
-          <Route path="/full-code/:id" element={<FullCode />} />
           <Route path="/full-code/public/:id" element={<FullPublicCode />} />
-          <Route path="/submit-code" element={<CodeSubmit />} />
-          <Route path="/code-update/:id" element={<CodeUpdate />} />
           <Route path="/feedback" element={<Feedback />} />
-          <Route path="/profile/update" element={<UserUpdate />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Route>
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        {/* Protected Routes (Required Authentication)  */}
+        <Route element={<AuthGuard />}>
+          <Route element={<MainLayout />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/your-code" element={<YourCodes />} />
+            <Route path="/full-code/:id" element={<FullCode />} />
+            <Route path="/submit-code" element={<CodeSubmit />} />
+            <Route path="/code-update/:id" element={<CodeUpdate />} />
+            <Route path="/profile/update" element={<UserUpdate />} />
+          </Route>
+        </Route>
+
+        {/* Login and Register Route  */}
+        <Route element={<AuthRedirectGuard />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
       </Routes>
     </Router>
   );

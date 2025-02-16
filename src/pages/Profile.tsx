@@ -17,6 +17,13 @@ import { java } from "@codemirror/lang-java";
 import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
 import { cpp } from "@codemirror/lang-cpp";
+import { php } from "@codemirror/lang-php";
+import { sql } from "@codemirror/lang-sql";
+import { markdown } from "@codemirror/lang-markdown";
+import { xml } from "@codemirror/lang-xml";
+import { json } from "@codemirror/lang-json";
+import { rust } from "@codemirror/lang-rust";
+import { go } from "@codemirror/lang-go";
 
 interface Code {
   _id: string;
@@ -41,13 +48,11 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const { user } = useSelector((state: RootState) => state.auth); // Get auth state
-
-  console.log("User Profile ", user);
+  const loggedInUserId = user._id;
 
   // Fetch all the codes of Mine
   const [codes, setCodes] = useState<Code[]>([]);
   const [reviews, setReviews] = useState<Review[]>([]);
-
   const [modelOpen, setModelOpen] = useState(false);
 
   const handleDeleteToggle = () => {
@@ -93,9 +98,10 @@ const Profile = () => {
     }
   };
 
+  // Language Selection
   const getLanguageExtension = (language) => {
     switch (language) {
-      case "Javascript":
+      case "JavaScript":
         return [javascript()];
       case "Python":
         return [python()];
@@ -104,9 +110,24 @@ const Profile = () => {
       case "HTML":
         return [html()];
       case "CSS":
-        return css();
-      case "C Language":
+        return [css()];
+      case "C":
+      case "C++":
         return [cpp()];
+      case "PHP":
+        return [php()];
+      case "SQL":
+        return [sql()];
+      case "Markdown":
+        return [markdown()];
+      case "XML":
+        return [xml()];
+      case "JSON":
+        return [json()];
+      case "Rust":
+        return [rust()];
+      case "Go":
+        return [go()];
       default:
         return [];
     }
@@ -298,11 +319,33 @@ const Profile = () => {
                   />
 
                   <div className="flex justify-between mt-5">
+                    {/* Like Count show  */}
                     <div className="flex items-center gap-2">
                       {" "}
-                      <ThumbsUp />{" "}
+                      {item.likes.some(
+                        (like) => like.userId === loggedInUserId
+                      ) ? (
+                        <svg
+                          className="w-6 h-6 text-purple-500 dark:text-white"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M15.03 9.684h3.965c.322 0 .64.08.925.232.286.153.532.374.717.645a2.109 2.109 0 0 1 .242 1.883l-2.36 7.201c-.288.814-.48 1.355-1.884 1.355-2.072 0-4.276-.677-6.157-1.256-.472-.145-.924-.284-1.348-.404h-.115V9.478a25.485 25.485 0 0 0 4.238-5.514 1.8 1.8 0 0 1 .901-.83 1.74 1.74 0 0 1 1.21-.048c.396.13.736.397.96.757.225.36.32.788.269 1.211l-1.562 4.63ZM4.177 10H7v8a2 2 0 1 1-4 0v-6.823C3 10.527 3.527 10 4.176 10Z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      ) : (
+                        <ThumbsUp size={18} />
+                      )}
                       <p className="text-lg">{item.likes.length}</p>
                     </div>
+
                     <button className="bg-black text-white font-medium rounded-lg text-sm p-2">
                       <NavLink to={`/full-code/${item._id}`}>View Full</NavLink>
                     </button>

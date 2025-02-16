@@ -9,6 +9,13 @@ import { java } from "@codemirror/lang-java";
 import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
 import { cpp } from "@codemirror/lang-cpp";
+import { php } from "@codemirror/lang-php";
+import { sql } from "@codemirror/lang-sql";
+import { markdown } from "@codemirror/lang-markdown";
+import { xml } from "@codemirror/lang-xml";
+import { json } from "@codemirror/lang-json";
+import { rust } from "@codemirror/lang-rust";
+import { go } from "@codemirror/lang-go";
 import { vscodeLight } from "@uiw/codemirror-theme-vscode";
 import CodeMirror, { EditorState, EditorView } from "@uiw/react-codemirror";
 import { useSelector } from "react-redux";
@@ -53,10 +60,10 @@ const YourCodes = () => {
     getAllCodes(currentPage);
   }, [currentPage]);
 
-  // For Code Language Selection
+  // Language Selection
   const getLanguageExtension = (language) => {
     switch (language) {
-      case "Javascript":
+      case "JavaScript":
         return [javascript()];
       case "Python":
         return [python()];
@@ -65,9 +72,24 @@ const YourCodes = () => {
       case "HTML":
         return [html()];
       case "CSS":
-        return css();
-      case "C Language":
+        return [css()];
+      case "C":
+      case "C++":
         return [cpp()];
+      case "PHP":
+        return [php()];
+      case "SQL":
+        return [sql()];
+      case "Markdown":
+        return [markdown()];
+      case "XML":
+        return [xml()];
+      case "JSON":
+        return [json()];
+      case "Rust":
+        return [rust()];
+      case "Go":
+        return [go()];
       default:
         return [];
     }

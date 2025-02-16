@@ -18,6 +18,14 @@ import { java } from "@codemirror/lang-java";
 import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
 import { cpp } from "@codemirror/lang-cpp";
+import { php } from "@codemirror/lang-php";
+import { sql } from "@codemirror/lang-sql";
+import { markdown } from "@codemirror/lang-markdown";
+import { xml } from "@codemirror/lang-xml";
+import { json } from "@codemirror/lang-json";
+import { rust } from "@codemirror/lang-rust";
+import { go } from "@codemirror/lang-go";
+
 import toast, { Toaster } from "react-hot-toast";
 
 const CodeSubmit = () => {
@@ -27,13 +35,12 @@ const CodeSubmit = () => {
   const [tags, setTags] = useState<string>("");
   const [language, setLanguage] = useState<string>("");
   const [visibility, setVisibility] = useState<string>("");
-  const [status, setStatus] = useState<string>("");
   const [code, setCodes] = useState<string>("");
 
-  // Lanuage Selection
+  // Language Selection
   const getLanguageExtension = () => {
     switch (language) {
-      case "Javascript":
+      case "JavaScript":
         return [javascript()];
       case "Python":
         return [python()];
@@ -42,9 +49,24 @@ const CodeSubmit = () => {
       case "HTML":
         return [html()];
       case "CSS":
-        return css();
-      case "C Language":
+        return [css()];
+      case "C":
+      case "C++":
         return [cpp()];
+      case "PHP":
+        return [php()];
+      case "SQL":
+        return [sql()];
+      case "Markdown":
+        return [markdown()];
+      case "XML":
+        return [xml()];
+      case "JSON":
+        return [json()];
+      case "Rust":
+        return [rust()];
+      case "Go":
+        return [go()];
       default:
         return [];
     }
@@ -57,7 +79,7 @@ const CodeSubmit = () => {
       const url = `${baseUrl}/code/create`;
       const response = await axios.post(
         url,
-        { title, description, tags, status, language, visibility, code },
+        { title, description, tags, language, visibility, code },
         { withCredentials: true }
       );
 
@@ -125,6 +147,24 @@ const CodeSubmit = () => {
               <option value="sorting">Sorting</option>
               <option value="algorithm">Algorithm</option>
               <option value="optimization">Optimization</option>
+              <option value="data-structures">Data Structures</option>
+              <option value="recursion">Recursion</option>
+              <option value="dynamic-programming">Dynamic Programming</option>
+              <option value="greedy">Greedy</option>
+              <option value="graph-theory">Graph Theory</option>
+              <option value="bit-manipulation">Bit Manipulation</option>
+              <option value="string-manipulation">String Manipulation</option>
+              <option value="mathematics">Mathematics</option>
+              <option value="regex">Regular Expressions</option>
+              <option value="database">Database</option>
+              <option value="web-development">Web Development</option>
+              <option value="mobile-development">Mobile Development</option>
+              <option value="machine-learning">Machine Learning</option>
+              <option value="ai">Artificial Intelligence</option>
+              <option value="blockchain">Blockchain</option>
+              <option value="game-development">Game Development</option>
+              <option value="devops">DevOps</option>
+              <option value="security">Security</option>
             </select>
           </div>
 
@@ -140,31 +180,20 @@ const CodeSubmit = () => {
               className="p-2 border border-gray-300 rounded-lg w-full"
             >
               <option value="">Select Code Language</option>
-              <option value="Javascript">JavaScript</option>
+              <option value="JavaScript">JavaScript</option>
               <option value="Python">Python</option>
               <option value="Java">Java</option>
+              <option value="C">C</option>
+              <option value="C++">C++</option>
+              <option value="PHP">PHP</option>
+              <option value="Go">Go</option>
+              <option value="Rust">Rust</option>
+              <option value="SQL">SQL</option>
+              <option value="Markdown">Markdown</option>
+              <option value="JSON">JSON</option>
+              <option value="XML">XML</option>
               <option value="HTML">HTML</option>
               <option value="CSS">CSS</option>
-              <option value="React.js">React.js</option>
-              <option value="C Language">C</option>
-            </select>
-          </div>
-
-          {/* Status */}
-          <div className="grid gap-2">
-            <label htmlFor="status" className="font-medium text-gray-700">
-              Status
-            </label>
-            <select
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              id="status"
-              className="p-2 border border-gray-300 rounded-lg w-full"
-            >
-              <option value="">Select Status</option>
-              <option value="pending">Pending</option>
-              <option value="approved">Approved</option>
-              <option value="rejected">Rejected</option>
             </select>
           </div>
 
@@ -226,7 +255,6 @@ const CodeSubmit = () => {
                 setDescription("");
                 setTags("");
                 setLanguage("");
-                setStatus("");
                 setVisibility("");
                 setCodes("");
                 setCodes("");
@@ -323,7 +351,6 @@ const CodeSubmit = () => {
         </div>
       </div>
       <Toaster position="top-right" reverseOrder={false} />
-
     </div>
   );
 };
