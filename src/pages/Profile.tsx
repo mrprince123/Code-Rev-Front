@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../Redux/store";
-import { baseUrl } from "../App";
+import { RootState } from "../Redux/Store";
+import { baseUrl, planeBackUrl } from "../App";
 import axios from "axios";
 import { ThumbsUp } from "lucide-react";
 import { NavLink } from "react-router-dom";
@@ -25,13 +25,17 @@ import { json } from "@codemirror/lang-json";
 import { rust } from "@codemirror/lang-rust";
 import { go } from "@codemirror/lang-go";
 
+interface Like {
+  userId: string;
+}
+
 interface Code {
   _id: string;
   title: string;
   description: string;
   tags: string[];
   code: string;
-  likes: string[];
+  likes: Like[];
   language: string;
   status: string;
   visivility: string;
@@ -39,7 +43,8 @@ interface Code {
 
 interface Review {
   _id: string;
-  submissionId: string[];
+  // submissionId: string[];
+  submissionId: { _id: string; title: string };
   comment: string;
   rating: string;
 }
@@ -49,8 +54,6 @@ const Profile = () => {
 
   const { user } = useSelector((state: RootState) => state.auth); // Get auth state
   const loggedInUserId = user?._id;
-
-  console.log("User Profile url", user?.profilePicture);
 
   // Fetch all the codes of Mine
   const [codes, setCodes] = useState<Code[]>([]);
@@ -80,7 +83,9 @@ const Profile = () => {
       const response = await axios.get(url, { withCredentials: true });
       console.log("Code Reviews ", response);
       setReviews(response.data.data);
-    } catch (error) {}
+    } catch (error: any) {
+      console.log("Error while getting all review ", error);
+    }
   };
 
   useEffect(() => {
@@ -101,7 +106,7 @@ const Profile = () => {
   };
 
   // Language Selection
-  const getLanguageExtension = (language) => {
+  const getLanguageExtension = (language: string) => {
     switch (language) {
       case "JavaScript":
         return [javascript()];
@@ -143,7 +148,7 @@ const Profile = () => {
           <div className="bg-white shadow-sm rounded-lg p-6">
             <div className="flex flex-col items-center">
               <img
-                src={`http://localhost:5000${user?.profilePicture}`}
+                src={`${planeBackUrl}${user?.profilePicture}`}
                 className="w-32 h-32 bg-gray-300 rounded-full object-cover mb-4 shrink-0"
                 alt="Profile"
               />
@@ -274,12 +279,12 @@ const Profile = () => {
 
             <div className="flex justify-between items-center mb-4 mt-10">
               <h2 className="text-xl font-bold">Recent Code Reviews</h2>
-              <NavLink
+              {/* <NavLink
                 to="/your-code"
                 className="bg-black text-sm text-white rounded-lg font-medium px-2 py-1"
               >
                 View All
-              </NavLink>
+              </NavLink> */}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

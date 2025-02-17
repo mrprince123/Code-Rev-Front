@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { baseUrl } from "../App";
+import { baseUrl, planeBackUrl } from "../App";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { profileUpdate } from "../Redux/AuthSlice";
@@ -85,7 +85,7 @@ const UserUpdate = () => {
       console.log("Response while Updating ", response);
       toast.success(response.data.message);
       navigate("/profile");
-    } catch (error) {
+    } catch (error: any) {
       console.log("Error while Profile Update ", error);
       toast.error(error.response.data.message);
     }
@@ -120,7 +120,7 @@ const UserUpdate = () => {
                       className="inline-block size-16 object-cover rounded-full ring-2 ring-white dark:ring-neutral-900"
                       src={
                         profilePicturePreview ||
-                        `http://localhost:5000${profilePicture}`
+                        `${planeBackUrl}${profilePicture}`
                       }
                       alt="User Profile Image"
                     />

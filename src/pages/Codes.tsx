@@ -20,6 +20,12 @@ import { vscodeLight } from "@uiw/codemirror-theme-vscode";
 import CodeMirror, { EditorState, EditorView } from "@uiw/react-codemirror";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
+import { RootState } from "../Redux/Store";
+
+
+interface Like {
+  userId : string;
+}
 
 interface Code {
   _id: string;
@@ -27,7 +33,7 @@ interface Code {
   description: string;
   tags: string[];
   code: string;
-  likes: string[];
+  likes: Like[];
   language: string;
   status: string;
   visivility: string;
@@ -61,7 +67,7 @@ const Codes = () => {
   }, [currentPage]);
 
   // Language Selection
-  const getLanguageExtension = (language) => {
+  const getLanguageExtension = (language : string) => {
     switch (language) {
       case "JavaScript":
         return [javascript()];
@@ -103,15 +109,11 @@ const Codes = () => {
       console.log("Response while Liking ", response);
       toast.success(response.data.message);
       getAllPublicCodes(currentPage);
-    } catch (error) {
+    } catch (error : any) {
       console.log("Error while Liking codes:", error);
       toast.error(error.response.data.message);
     }
   };
-
-  // If the User liked any code then highlight the like icon
-  // if loggedIn userId is equal to the userId present in the like model
-  // then make it blue
 
   return (
     <div>
@@ -173,7 +175,6 @@ const Codes = () => {
                   className="flex items-center gap-2"
                 >
                   {item.likes.some((like) => like.userId === loggedInUserId) ? (
-                    // <ThumbsUp size={18} color="#690df2" />
                     <svg
                       className="w-6 h-6 text-purple-500 dark:text-white"
                       aria-hidden="true"

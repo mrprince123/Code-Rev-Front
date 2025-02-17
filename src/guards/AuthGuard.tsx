@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../Redux/store";
+import { RootState } from "../Redux/Store";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 const AuthGuard = () => {

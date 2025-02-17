@@ -88,7 +88,7 @@ const CodeUpdate = () => {
       console.log("Response while Update code ", response);
       toast.success(response.data.message);
       navigate("/your-code");
-    } catch (error) {
+    } catch (error : any) {
       console.log("Error while Submitting the Code ", error);
       toast.error(error.response.data.message);
     }
@@ -109,7 +109,7 @@ const CodeUpdate = () => {
   };
 
   // Language Selection
-  const getLanguageExtension = () => {
+  const getLanguageExtension = (language : string) => {
     switch (language) {
       case "JavaScript":
         return [javascript()];
@@ -283,7 +283,7 @@ const CodeUpdate = () => {
               value={codeData.code}
               minHeight="400px"
               theme={vscodeLight}
-              extensions={[getLanguageExtension()]}
+              extensions={[getLanguageExtension(codeData.language)]}
               onChange={(newContent) =>
                 setCodeData((prev) => ({ ...prev, code: newContent }))
               }

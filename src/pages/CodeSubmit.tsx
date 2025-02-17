@@ -86,7 +86,7 @@ const CodeSubmit = () => {
       console.log("Response while Added new code ", response);
       toast.success(response.data.message);
       navigate("/your-code");
-    } catch (error) {
+    } catch (error : any) {
       console.log("Error while Submitting the Code ", error);
       toast.error(error.response.data.message);
     }

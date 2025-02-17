@@ -1,24 +1,24 @@
 import axios from "axios";
 import { Github, Link, Linkedin, Mail } from "lucide-react";
-import { useState } from "react";
+// import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 const Contact = () => {
-  const [purpose, setPurpose] = useState<string>("");
-  const [feedback, setFeedBack] = useState<string>("");
+  // const [purpose, setPurpose] = useState<string>("");
+  // const [feedback, setFeedBack] = useState<string>("");
 
   const handleSubmit = async () => {
     try {
       const url = "";
       const response = await axios.post(
         url,
-        { purpose, feedback },
+        { },
         { withCredentials: true }
       );
       console.log("Response while Feedback", response);
       toast.success(response.data.message);
-    } catch (error) {
+    } catch (error : any) {
       console.log("Error while Sending Feedback", error);
       toast.error(error.response.data.message);
     }

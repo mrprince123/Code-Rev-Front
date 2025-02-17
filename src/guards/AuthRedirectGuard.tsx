@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../Redux/store";
+import { RootState } from "../Redux/Store";
 
 const AuthRedirectGuard = () => {
   const isAuthenticated = useSelector(

@@ -20,6 +20,12 @@ import { vscodeLight } from "@uiw/codemirror-theme-vscode";
 import CodeMirror, { EditorState, EditorView } from "@uiw/react-codemirror";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
+import { RootState } from "../Redux/Store";
+
+
+interface Like {
+  userId : string;
+}
 
 interface Code {
   _id: string;
@@ -27,7 +33,7 @@ interface Code {
   description: string;
   tags: string[];
   code: string;
-  likes: string[];
+  likes: Like[];
   language: string;
   status: string;
   visivility: string;
@@ -41,7 +47,7 @@ const YourCodes = () => {
 
   // Get User ID
   const { user } = useSelector((state: RootState) => state.auth); // Get auth state
-  const loggedInUserId = user._id;
+  const loggedInUserId = user ? user._id : null;
 
   // To get all the Codes of the User
   const getAllCodes = async (page: number) => {
@@ -61,7 +67,7 @@ const YourCodes = () => {
   }, [currentPage]);
 
   // Language Selection
-  const getLanguageExtension = (language) => {
+  const getLanguageExtension = (language : string) => {
     switch (language) {
       case "JavaScript":
         return [javascript()];
@@ -103,7 +109,7 @@ const YourCodes = () => {
       console.log("Response while Liking ", response);
       toast.success(response.data.message);
       getAllCodes(currentPage);
-    } catch (error) {
+    } catch (error : any) {
       console.log("Error while Liking codes:", error);
       toast.error(error.response.data.message);
     }
@@ -169,7 +175,6 @@ const YourCodes = () => {
                 >
                   {" "}
                   {item.likes.some((like) => like.userId === loggedInUserId) ? (
-                    // <ThumbsUp size={18} color="#690df2" />
 
                     <svg
                       className="w-6 h-6 text-purple-500 dark:text-white"

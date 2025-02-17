@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { baseUrl } from "../App";
+import toast, { Toaster } from "react-hot-toast";
 
 export function RegisterForm() {
   const navigate = useNavigate();
@@ -19,9 +20,10 @@ export function RegisterForm() {
         { withCredentials: true }
       );
       console.log("Response ", response);
-      console.log(response.data.message);
-      navigate("/");
-    } catch (error) {
+      toast.success(response.data.message);
+      navigate("/login");
+    } catch (error: any) {
+      toast.error(error.response.data.message);
       console.error("Register failed", error);
     }
   };
@@ -110,6 +112,7 @@ export function RegisterForm() {
           Sign in
         </NavLink>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </form>
   );
 }

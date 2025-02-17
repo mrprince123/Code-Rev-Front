@@ -11,8 +11,7 @@ import {
   Pencil,
   Trash2,
 } from "lucide-react";
-import { baseUrl } from "../App";
-
+import { baseUrl, planeBackUrl } from "../App";
 import CodeMirror, { EditorState } from "@uiw/react-codemirror";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { javascript } from "@codemirror/lang-javascript";
@@ -30,6 +29,7 @@ import { rust } from "@codemirror/lang-rust";
 import { go } from "@codemirror/lang-go";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
+import { RootState } from "../Redux/Store";
 
 interface Code {
   _id: string;
@@ -42,6 +42,7 @@ interface Code {
   reviews: {
     _id: string;
     reviewerId: {
+      _id: string | null;
       name: string;
       email: string;
       profilePicture: string;
@@ -52,6 +53,7 @@ interface Code {
   }[];
   createdAt: string;
   authorId: {
+    _id : string;
     name: string;
     email: string;
     profilePicture: string;
@@ -113,7 +115,7 @@ const FullCode = () => {
       setToggleComment(false);
       setComments(""); // Clear the comment field
       setRating(""); // Clear the rating field
-    } catch (error) {
+    } catch (error : any) {
       console.log("Error while Added Comment ", error);
       toast.error(error.response.data.message);
     }
@@ -256,7 +258,7 @@ const FullCode = () => {
       setComments(""); // Clear the comment field
       setRating(""); // Clear the rating field
       toast.success(response.data.message);
-    } catch (error) {
+    } catch (error : any) {
       console.log("Error while deleting the Comment ", error);
       toast.error(error.response.data.message);
     }
@@ -283,7 +285,11 @@ const FullCode = () => {
           <div className="flex items-center gap-2 text-gray-500 text-sm">
             <div className="flex gap-4 items-center">
               <img
-                src={codeDetails.authorId?.profilePicture}
+            
+                src={
+                  `${planeBackUrl}${codeDetails.authorId?.profilePicture}` ||
+                  "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg"
+                }
                 alt="Profile Pic"
                 className="h-12 w-12 rounded-full object-cover border border-gray-300"
               />
@@ -434,7 +440,8 @@ const FullCode = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex gap-4 items-center">
                       <img
-                        src={review.reviewerId.profilePicture}
+                        src={`${planeBackUrl}${review.reviewerId.profilePicture}`}
+
                         alt="Profile Pic"
                         className="h-12 w-12 rounded-full object-cover border border-gray-300"
                       />

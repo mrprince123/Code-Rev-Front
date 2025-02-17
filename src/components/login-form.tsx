@@ -4,6 +4,7 @@ import axios from "axios";
 import { baseUrl } from "../App";
 import { useDispatch } from "react-redux";
 import { login } from "../Redux/AuthSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 export function LoginForm() {
   const navigate = useNavigate();
@@ -27,8 +28,10 @@ export function LoginForm() {
       dispatch(
         login({ user: response.data.data, token: response.data.accessToken })
       );
+      toast.success(response.data.message);
       navigate(from, { replace: true });
-    } catch (error) {
+    } catch (error: any) {
+      toast.error(error.response.data.message);
       console.error("Login failed", error);
     }
   };
@@ -105,6 +108,7 @@ export function LoginForm() {
           Sign up
         </NavLink>
       </div>
+      <Toaster position="top-right" reverseOrder={false} />
     </form>
   );
 }

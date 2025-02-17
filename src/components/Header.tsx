@@ -2,9 +2,9 @@ import { GalleryVerticalEnd } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../Redux/AuthSlice";
-import { RootState } from "../Redux/store"; // Ensure correct store import
+import { RootState } from "../Redux/Store"; // Ensure correct store import
 import { useState } from "react";
-import { baseUrl } from "../App";
+import { baseUrl, planeBackUrl } from "../App";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -17,7 +17,7 @@ const Header = () => {
     useSelector((state: RootState) => state.auth) || {}; // Prevent null errors
 
   const userProfilePic: string =
-    user?.profilePicture ||
+    `${planeBackUrl}${user?.profilePicture}` ||
     "https://wallpapers.com/images/hd/placeholder-profile-icon-20tehfawxt5eihco.jpg";
 
   const handleLogout = async () => {
@@ -28,7 +28,7 @@ const Header = () => {
       navigate("/");
       toast.success(response.data.message);
       dispatch(logout());
-    } catch (error) {
+    } catch (error: any) {
       toast.error(error.response.data.message);
       console.log("Error while logout ", error);
     }
@@ -65,7 +65,7 @@ const Header = () => {
                 <NavLink to="/profile">
                   <img
                     className="h-10 w-10 rounded-full object-cover"
-                    src={`http://localhost:5000${user?.profilePicture}`}
+                    src={userProfilePic}
                     alt="Profile"
                   />
                 </NavLink>

@@ -9,8 +9,7 @@ import {
   Pencil,
   Trash2,
 } from "lucide-react";
-import { baseUrl } from "../App";
-
+import { baseUrl, planeBackUrl } from "../App";
 import CodeMirror, { EditorState } from "@uiw/react-codemirror";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { javascript } from "@codemirror/lang-javascript";
@@ -28,7 +27,7 @@ import { rust } from "@codemirror/lang-rust";
 import { go } from "@codemirror/lang-go";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
-import { RootState } from "../Redux/store";
+import { RootState } from "../Redux/Store";
 
 interface Code {
   _id: string;
@@ -111,7 +110,7 @@ const FullPublicCode = () => {
       setToggleComment(false);
       setComments(""); // Clear the comment field
       setRating(""); // Clear the rating field
-    } catch (error) {
+    } catch (error: any) {
       console.log("Error while Added Comment ", error);
       toast.error(error.response.data.message);
     }
@@ -210,7 +209,7 @@ const FullPublicCode = () => {
       console.log("Response while deleting Comment ", response);
       toast.success(response.data.message);
       fetchFullCode();
-    } catch (error) {
+    } catch (error: any) {
       console.log("Error while deleting the Comment ", error);
       toast.error(error.response.data.message);
     }
@@ -240,7 +239,7 @@ const FullPublicCode = () => {
       setRating(""); // Clear the rating field
       toast.success(response.data.message);
       setModelOpen(false);
-    } catch (error) {
+    } catch (error: any) {
       console.log("Error while deleting the Comment ", error);
       toast.error(error.response.data.message);
     }
@@ -264,16 +263,25 @@ const FullPublicCode = () => {
         {/* User Information  */}
         <div className="flex justify-between items-center mb-5">
           {/* User Details */}
-          <div className="flex items-center gap-2 text-gray-500 text-sm">
+          <div className="flex items-center gap-4 text-gray-500 text-sm">
             <img
-              className="h-8 w-8 rounded-full object-cover"
+              className="h-12 w-12 rounded-full object-cover border border-gray-300"
               src={
-                codeDetails.authorId?.profilePicture ||
+                `${planeBackUrl}${codeDetails.authorId?.profilePicture}` ||
                 "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg"
               }
+              // src={`{user?.profilePicture}`}
+
               alt="Author"
             />
-            <span>{codeDetails.authorId.name}</span>
+            <div>
+              <p className="font-semibold text-gray-800">
+                {codeDetails.authorId.name}
+              </p>
+              <p className="text-sm text-gray-600">
+                {codeDetails.authorId.email}
+              </p>
+            </div>
           </div>
 
           {/* Add Share Functionaility  */}
@@ -411,7 +419,7 @@ const FullPublicCode = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex gap-4 items-center">
                       <img
-                        src={review.reviewerId.profilePicture}
+                        src={`${planeBackUrl}${review.reviewerId.profilePicture}`}
                         alt="Profile Pic"
                         className="h-12 w-12 rounded-full object-cover border border-gray-300"
                       />
