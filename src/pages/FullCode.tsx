@@ -10,6 +10,8 @@ import {
   Share2,
   Pencil,
   Trash2,
+  MessageCircleCode,
+  Sparkle,
 } from "lucide-react";
 import { baseUrl, planeBackUrl } from "../App";
 import CodeMirror, { EditorState } from "@uiw/react-codemirror";
@@ -30,6 +32,7 @@ import { go } from "@codemirror/lang-go";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { RootState } from "../Redux/Store";
+import ReactMarkdown from "react-markdown";
 
 interface Code {
   _id: string;
@@ -53,11 +56,12 @@ interface Code {
   }[];
   createdAt: string;
   authorId: {
-    _id : string;
+    _id: string;
     name: string;
     email: string;
     profilePicture: string;
   };
+  aiResponse: string;
 }
 
 interface RecentCode {
@@ -115,7 +119,7 @@ const FullCode = () => {
       setToggleComment(false);
       setComments(""); // Clear the comment field
       setRating(""); // Clear the rating field
-    } catch (error : any) {
+    } catch (error: any) {
       console.log("Error while Added Comment ", error);
       toast.error(error.response.data.message);
     }
@@ -258,7 +262,7 @@ const FullCode = () => {
       setComments(""); // Clear the comment field
       setRating(""); // Clear the rating field
       toast.success(response.data.message);
-    } catch (error : any) {
+    } catch (error: any) {
       console.log("Error while deleting the Comment ", error);
       toast.error(error.response.data.message);
     }
@@ -285,7 +289,6 @@ const FullCode = () => {
           <div className="flex items-center gap-2 text-gray-500 text-sm">
             <div className="flex gap-4 items-center">
               <img
-            
                 src={
                   `${planeBackUrl}${codeDetails.authorId?.profilePicture}` ||
                   "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg"
@@ -370,6 +373,23 @@ const FullCode = () => {
           </div>
         </div>
 
+        {/* AI Reviews  */}
+        <div className="mt-8">
+          <div className="flex items-center gap-2 mb-5 text-purple-500">
+            <Sparkle />
+            <h1 className="text-xl font-medium">AI Reviews</h1>
+          </div>
+
+          <div className="flex gap-4 bg-gray-100 rounded-lg p-4">
+            <div className="bg-gray-200 p-2 rounded-full max-h-max">
+              <MessageCircleCode />
+            </div>
+            <div className="px-2 overflow-hidden">
+              <ReactMarkdown>{codeDetails.aiResponse}</ReactMarkdown>
+            </div>
+          </div>
+        </div>
+
         <div className="flex justify-end mt-5">
           <button
             onClick={openCommentBox}
@@ -441,7 +461,6 @@ const FullCode = () => {
                     <div className="flex gap-4 items-center">
                       <img
                         src={`${planeBackUrl}${review.reviewerId.profilePicture}`}
-
                         alt="Profile Pic"
                         className="h-12 w-12 rounded-full object-cover border border-gray-300"
                       />
