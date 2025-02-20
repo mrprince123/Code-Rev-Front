@@ -13,7 +13,7 @@ import {
   MessageCircleCode,
   Sparkle,
 } from "lucide-react";
-import { baseUrl} from "../App";
+import { baseUrl } from "../App";
 import CodeMirror, { EditorState } from "@uiw/react-codemirror";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { javascript } from "@codemirror/lang-javascript";
@@ -289,10 +289,7 @@ const FullCode = () => {
           <div className="flex items-center gap-2 text-gray-500 text-sm">
             <div className="flex gap-4 items-center">
               <img
-                src={
-                  `${codeDetails.authorId?.profilePicture}` ||
-                  "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg"
-                }
+                src={codeDetails.authorId?.profilePicture}
                 alt="Profile Pic"
                 className="h-12 w-12 rounded-full object-cover border border-gray-300"
               />

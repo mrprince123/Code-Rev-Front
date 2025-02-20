@@ -8,6 +8,8 @@ import {
   Share2,
   Pencil,
   Trash2,
+  MessageCircleCode,
+  Sparkle,
 } from "lucide-react";
 import { baseUrl } from "../App";
 import CodeMirror, { EditorState } from "@uiw/react-codemirror";
@@ -28,6 +30,8 @@ import { go } from "@codemirror/lang-go";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { RootState } from "../Redux/Store";
+import ReactMarkdown from "react-markdown";
+
 
 interface Code {
   _id: string;
@@ -267,11 +271,9 @@ const FullPublicCode = () => {
             <img
               className="h-12 w-12 rounded-full object-cover border border-gray-300"
               src={
-                `${codeDetails.authorId?.profilePicture}` ||
+                codeDetails.authorId?.profilePicture ||
                 "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg"
               }
-              // src={`{user?.profilePicture}`}
-
               alt="Author"
             />
             <div>
@@ -346,6 +348,23 @@ const FullPublicCode = () => {
             <span className="text-lg font-medium">
               {codeDetails.reviews.length} Comments
             </span>
+          </div>
+        </div>
+
+        {/* AI Reviews  */}
+        <div className="mt-8">
+          <div className="flex items-center gap-2 mb-5 text-purple-500">
+            <Sparkle />
+            <h1 className="text-xl font-medium">AI Reviews</h1>
+          </div>
+
+          <div className="flex gap-4 bg-gray-50 rounded-lg p-4 border ">
+            <div className="bg-gray-200 p-2 rounded-full max-h-max">
+              <MessageCircleCode />
+            </div>
+            <div className="px-2 overflow-hidden text-gray-600">
+              <ReactMarkdown>{codeDetails.aiResponse}</ReactMarkdown>
+            </div>
           </div>
         </div>
 
