@@ -60,6 +60,7 @@ interface Code {
     email: string;
     profilePicture: string;
   };
+  aiResponse : string;
 }
 
 interface RecentCode {
