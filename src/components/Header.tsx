@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../Redux/AuthSlice";
 import { RootState } from "../Redux/Store"; // Ensure correct store import
 import { useState } from "react";
-import { baseUrl, planeBackUrl } from "../App";
+import { baseUrl} from "../App";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -17,7 +17,7 @@ const Header = () => {
     useSelector((state: RootState) => state.auth) || {}; // Prevent null errors
 
   const userProfilePic: string =
-    `${planeBackUrl}${user?.profilePicture}` ||
+    `${user?.profilePicture}` ||
     "https://wallpapers.com/images/hd/placeholder-profile-icon-20tehfawxt5eihco.jpg";
 
   const handleLogout = async () => {

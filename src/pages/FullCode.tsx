@@ -13,7 +13,7 @@ import {
   MessageCircleCode,
   Sparkle,
 } from "lucide-react";
-import { baseUrl, planeBackUrl } from "../App";
+import { baseUrl} from "../App";
 import CodeMirror, { EditorState } from "@uiw/react-codemirror";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { javascript } from "@codemirror/lang-javascript";
@@ -290,7 +290,7 @@ const FullCode = () => {
             <div className="flex gap-4 items-center">
               <img
                 src={
-                  `${planeBackUrl}${codeDetails.authorId?.profilePicture}` ||
+                  `${codeDetails.authorId?.profilePicture}` ||
                   "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg"
                 }
                 alt="Profile Pic"
@@ -380,11 +380,11 @@ const FullCode = () => {
             <h1 className="text-xl font-medium">AI Reviews</h1>
           </div>
 
-          <div className="flex gap-4 bg-gray-100 rounded-lg p-4">
+          <div className="flex gap-4 bg-gray-50 rounded-lg p-4 border ">
             <div className="bg-gray-200 p-2 rounded-full max-h-max">
               <MessageCircleCode />
             </div>
-            <div className="px-2 overflow-hidden">
+            <div className="px-2 overflow-hidden text-gray-600">
               <ReactMarkdown>{codeDetails.aiResponse}</ReactMarkdown>
             </div>
           </div>
@@ -460,7 +460,7 @@ const FullCode = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex gap-4 items-center">
                       <img
-                        src={`${planeBackUrl}${review.reviewerId.profilePicture}`}
+                        src={`${review.reviewerId.profilePicture}`}
                         alt="Profile Pic"
                         className="h-12 w-12 rounded-full object-cover border border-gray-300"
                       />

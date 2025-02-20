@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Redux/Store";
-import { baseUrl, planeBackUrl } from "../App";
+import { baseUrl} from "../App";
 import axios from "axios";
 import { ThumbsUp } from "lucide-react";
 import { NavLink } from "react-router-dom";
@@ -148,7 +148,7 @@ const Profile = () => {
           <div className="bg-white shadow-sm rounded-lg p-6">
             <div className="flex flex-col items-center">
               <img
-                src={`${planeBackUrl}${user?.profilePicture}`}
+                src={`${user?.profilePicture}`}
                 className="w-32 h-32 bg-gray-300 rounded-full object-cover mb-4 shrink-0"
                 alt="Profile"
               />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { baseUrl, planeBackUrl } from "../App";
+import { baseUrl } from "../App";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { profileUpdate } from "../Redux/AuthSlice";
@@ -120,7 +120,7 @@ const UserUpdate = () => {
                       className="inline-block size-16 object-cover rounded-full ring-2 ring-white dark:ring-neutral-900"
                       src={
                         profilePicturePreview ||
-                        `${planeBackUrl}${profilePicture}`
+                        `${profilePicture}`
                       }
                       alt="User Profile Image"
                     />
