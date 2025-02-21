@@ -22,14 +22,14 @@ import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { RootState } from "../Redux/Store";
 
-
 interface Like {
-  userId : string;
+  userId: string;
 }
 
 interface Code {
   _id: string;
   title: string;
+  slug: string;
   description: string;
   tags: string[];
   code: string;
@@ -67,7 +67,7 @@ const YourCodes = () => {
   }, [currentPage]);
 
   // Language Selection
-  const getLanguageExtension = (language : string) => {
+  const getLanguageExtension = (language: string) => {
     switch (language) {
       case "JavaScript":
         return [javascript()];
@@ -109,7 +109,7 @@ const YourCodes = () => {
       console.log("Response while Liking ", response);
       toast.success(response.data.message);
       getAllCodes(currentPage);
-    } catch (error : any) {
+    } catch (error: any) {
       console.log("Error while Liking codes:", error);
       toast.error(error.response.data.message);
     }
@@ -165,7 +165,7 @@ const YourCodes = () => {
                   lineNumbers: false, // Disable line numbers
                   foldGutter: false, // Disable code folding
                 }}
-                className="border border-gray-300 rounded-lg h-72 overflow-hidden overflow-x-auto"
+                className="border text-sm border-gray-300 rounded-lg h-72 overflow-hidden overflow-x-auto"
               />
 
               <div className="flex justify-between mt-5">
@@ -175,7 +175,6 @@ const YourCodes = () => {
                 >
                   {" "}
                   {item.likes.some((like) => like.userId === loggedInUserId) ? (
-
                     <svg
                       className="w-6 h-6 text-purple-500 dark:text-white"
                       aria-hidden="true"
@@ -197,7 +196,7 @@ const YourCodes = () => {
                   <p className="text-lg">{item.likes.length}</p>
                 </button>
                 <button className="bg-black text-white font-medium rounded-lg text-sm p-2">
-                  <NavLink to={`/full-code/${item._id}`}>View Full</NavLink>
+                  <NavLink to={`/full-code/${item.slug}`}>View Full</NavLink>
                 </button>
               </div>
             </div>

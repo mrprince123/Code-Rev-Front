@@ -32,10 +32,10 @@ import toast, { Toaster } from "react-hot-toast";
 import { RootState } from "../Redux/Store";
 import ReactMarkdown from "react-markdown";
 
-
 interface Code {
   _id: string;
   title: string;
+  slug: string;
   description: string;
   code: string;
   language: string;
@@ -60,7 +60,7 @@ interface Code {
     email: string;
     profilePicture: string;
   };
-  aiResponse : string;
+  aiResponse: string;
 }
 
 interface RecentCode {
@@ -71,7 +71,7 @@ interface RecentCode {
 }
 
 const FullPublicCode = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [codeDetails, setCodeDetails] = useState<Code | null>(null);
   const [comment, setComments] = useState<string>("");
   const [rating, setRating] = useState<string>("");
@@ -124,7 +124,7 @@ const FullPublicCode = () => {
   // Get Full Details of the Code
   const fetchFullCode = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/code/get/public/${id}`, {
+      const response = await axios.get(`${baseUrl}/code/get/public/${slug}`, {
         withCredentials: true,
       });
       setCodeDetails(response.data.data);
@@ -149,7 +149,7 @@ const FullPublicCode = () => {
   useEffect(() => {
     fetchFullCode();
     getAllPublicCodes();
-  }, [id]);
+  }, [slug]);
 
   if (!codeDetails) {
     return <div className="text-center text-gray-600 mt-10">Loading...</div>;

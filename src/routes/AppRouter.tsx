@@ -25,7 +25,7 @@ const AppRouter = () => {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/codes" element={<Codes />} />
-          <Route path="/full-code/public/:id" element={<FullPublicCode />} />
+          <Route path="/full-code/public/:slug" element={<FullPublicCode />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
@@ -36,9 +36,9 @@ const AppRouter = () => {
           <Route element={<MainLayout />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/your-code" element={<YourCodes />} />
-            <Route path="/full-code/:id" element={<FullCode />} />
+            <Route path="/full-code/:slug" element={<FullCode />} />
             <Route path="/submit-code" element={<CodeSubmit />} />
-            <Route path="/code-update/:id" element={<CodeUpdate />} />
+            <Route path="/code-update/:slug" element={<CodeUpdate />} />
             <Route path="/profile/update" element={<UserUpdate />} />
           </Route>
         </Route>

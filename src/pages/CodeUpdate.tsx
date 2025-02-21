@@ -40,7 +40,7 @@ interface Code {
 
 const CodeUpdate = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const [codeData, setCodeData] = useState<Code>({
     _id: "",
@@ -56,7 +56,7 @@ const CodeUpdate = () => {
   useEffect(() => {
     const fetchFullCode = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/code/get/${id}`, {
+        const response = await axios.get(`${baseUrl}/code/get/${slug}`, {
           withCredentials: true,
         });
         setCodeData(response.data.data);
@@ -65,7 +65,7 @@ const CodeUpdate = () => {
       }
     };
     fetchFullCode();
-  }, [id]);
+  }, [slug]);
 
   // Generic handler for input changes
   const handleChange = (
@@ -81,14 +81,14 @@ const CodeUpdate = () => {
   const handleCodeUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const url = `${baseUrl}/code/update/${id}`;
+      const url = `${baseUrl}/code/update/${slug}`;
       const response = await axios.put(url, codeData, {
         withCredentials: true,
       });
       console.log("Response while Update code ", response);
       toast.success(response.data.message);
       navigate("/your-code");
-    } catch (error : any) {
+    } catch (error: any) {
       console.log("Error while Submitting the Code ", error);
       toast.error(error.response.data.message);
     }
@@ -109,7 +109,7 @@ const CodeUpdate = () => {
   };
 
   // Language Selection
-  const getLanguageExtension = (language : string) => {
+  const getLanguageExtension = (language: string) => {
     switch (language) {
       case "JavaScript":
         return [javascript()];

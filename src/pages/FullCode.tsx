@@ -72,7 +72,7 @@ interface RecentCode {
 }
 
 const FullCode = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
   const [codeDetails, setCodeDetails] = useState<Code | null>(null);
   const [comment, setComments] = useState<string>("");
@@ -128,7 +128,7 @@ const FullCode = () => {
   // Get Full Details of the Code
   const fetchFullCode = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/code/get/${id}`, {
+      const response = await axios.get(`${baseUrl}/code/get/${slug}`, {
         withCredentials: true,
       });
       setCodeDetails(response.data.data);
@@ -153,7 +153,7 @@ const FullCode = () => {
   useEffect(() => {
     getAllProfileCodes();
     fetchFullCode();
-  }, [id]);
+  }, [slug]);
 
   if (!codeDetails) {
     return <div className="text-center text-gray-600 mt-10">Loading...</div>;
@@ -162,7 +162,7 @@ const FullCode = () => {
   // Handle Delete Code
   const handleDelete = async () => {
     try {
-      const response = await axios.delete(`${baseUrl}/code/delete/${id}`, {
+      const response = await axios.delete(`${baseUrl}/code/delete/${slug}`, {
         withCredentials: true,
       });
       // Redirect to codes list
@@ -519,7 +519,7 @@ const FullCode = () => {
         <div className="mt-8 flex justify-end gap-4">
           <button
             className="flex items-center bg-gray-300 text-black px-4 py-2 rounded-lg hover:bg-gray-500 transition"
-            onClick={() => navigate(`/code-update/${id}`)}
+            onClick={() => navigate(`/code-update/${slug}`)}
           >
             <Edit size={18} className="mr-2" />
             Edit Code
