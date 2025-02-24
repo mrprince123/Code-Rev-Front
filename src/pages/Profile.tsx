@@ -32,7 +32,7 @@ interface Like {
 interface Code {
   _id: string;
   title: string;
-  slug : string;
+  slug: string;
   description: string;
   tags: string[];
   code: string;
@@ -271,7 +271,9 @@ const Profile = () => {
                     </div>
 
                     <button className="bg-black text-white font-medium rounded-lg text-sm p-2">
-                      <NavLink to={`/full-code/${item.slug}`}>View Full</NavLink>
+                      <NavLink to={`/full-code/${item.slug}`}>
+                        View Full
+                      </NavLink>
                     </button>
                   </div>
                 </div>

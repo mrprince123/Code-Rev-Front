@@ -8,7 +8,7 @@ const Footer = () => {
         {/* Logo and Brand Name */}
         <NavLink
           to="/"
-          className="flex items-center gap-2 font-medium text-lg md:text-xl"
+          className="flex items-center gap-2 font-medium text-lg md:text-xl hover:text-purple-600"
         >
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
             <GalleryVerticalEnd className="size-5 md:size-6" />
@@ -24,37 +24,22 @@ const Footer = () => {
         {/* Links Section */}
         <ul className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm md:text-base text-gray-900 dark:text-white">
           <li>
-            <a href="#" className="hover:underline">
+            <a href="#" className=" hover:text-purple-600">
               About
             </a>
           </li>
           <li>
-            <a href="#" className="hover:underline">
-              Premium
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              Campaigns
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:underline">
-              Blog
-            </a>
-          </li>
-          <li>
-            <NavLink to="/" className="hover:underline">
+            <NavLink to="/" className=" hover:text-purple-600">
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/privacy" className="hover:underline">
+            <NavLink to="/privacy" className=" hover:text-purple-600">
               Privacy Policy
             </NavLink>
           </li>
           <li>
-            <NavLink to="/feedback" className="hover:underline">
+            <NavLink to="/feedback" className=" hover:text-purple-600">
               Contact
             </NavLink>
           </li>

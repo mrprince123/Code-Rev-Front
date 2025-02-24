@@ -86,7 +86,7 @@ const CodeSubmit = () => {
       console.log("Response while Added new code ", response);
       toast.success(response.data.message);
       navigate("/your-code");
-    } catch (error : any) {
+    } catch (error: any) {
       console.log("Error while Submitting the Code ", error);
       toast.error(error.response.data.message);
     }
@@ -143,11 +143,35 @@ const CodeSubmit = () => {
               className="p-2 border border-gray-300 rounded-lg w-full"
             >
               <option value="">Select Tag</option>
+              <option value="web-development">Web Development</option>
+              <option value="mobile-development">Mobile Development</option>
               <option value="bugfix">Bug Fix</option>
               <option value="sorting">Sorting</option>
               <option value="algorithm">Algorithm</option>
               <option value="optimization">Optimization</option>
-              <option value="data-structures">Data Structures</option>
+              <option value="data-structure">Data Structure</option>
+              <option value="performance">Performance</option>
+              <option value="security">Security</option>
+              <option value="best-practices">Best Practices</option>
+              <option value="API">API</option>
+              <option value="database">Database</option>
+              <option value="authentication">Authentication</option>
+              <option value="authorization">Authorization</option>
+              <option value="machine-learning">Machine Learning</option>
+              <option value="frontend">Frontend</option>
+              <option value="backend">Backend</option>
+              <option value="fullstack">Full Stack</option>
+              <option value="UI/UX">UI/UX</option>
+              <option value="testing">Testing</option>
+              <option value="debugging">Debugging</option>
+              <option value="deployment">Deployment</option>
+              <option value="cloud">Cloud</option>
+              <option value="devops">DevOps</option>
+              <option value="web-scraping">Web Scraping</option>
+              <option value="game-development">Game Development</option>
+              <option value="AI">Artificial Intelligence</option>
+              <option value="blockchain">Blockchain</option>
+              <option value="networking">Networking</option>
               <option value="recursion">Recursion</option>
               <option value="dynamic-programming">Dynamic Programming</option>
               <option value="greedy">Greedy</option>
@@ -156,15 +180,6 @@ const CodeSubmit = () => {
               <option value="string-manipulation">String Manipulation</option>
               <option value="mathematics">Mathematics</option>
               <option value="regex">Regular Expressions</option>
-              <option value="database">Database</option>
-              <option value="web-development">Web Development</option>
-              <option value="mobile-development">Mobile Development</option>
-              <option value="machine-learning">Machine Learning</option>
-              <option value="ai">Artificial Intelligence</option>
-              <option value="blockchain">Blockchain</option>
-              <option value="game-development">Game Development</option>
-              <option value="devops">DevOps</option>
-              <option value="security">Security</option>
             </select>
           </div>
 

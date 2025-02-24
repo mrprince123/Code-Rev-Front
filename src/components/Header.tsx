@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../Redux/AuthSlice";
 import { RootState } from "../Redux/Store"; // Ensure correct store import
 import { useState } from "react";
-import { baseUrl} from "../App";
+import { baseUrl } from "../App";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -125,7 +125,7 @@ const Header = () => {
                   to="/"
                   className={({ isActive }) =>
                     isActive
-                      ? "block py-2 pr-4 pl-3 text-indigo-600 font-semibold border-b-2 border-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-indigo-700 lg:p-0 dark:text-indigo-400 lg:dark:hover:text-indigo-300 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-300"
+                      ? "block py-2 pr-4 pl-3 text-purple-600 font-semibold border-b-2 border-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-indigo-700 lg:p-0 dark:text-indigo-400 lg:dark:hover:text-indigo-300 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-300"
                       : "block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-300"
                   }
                   aria-current="page"

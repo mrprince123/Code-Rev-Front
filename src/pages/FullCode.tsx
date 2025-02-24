@@ -179,8 +179,9 @@ const FullCode = () => {
     if (navigator.share) {
       navigator
         .share({
-          title: `Check out this code snippet: ${codeDetails.title}`,
-          text: `View the code snippet here:`,
+          // title: `Check out this code snippet: ${codeDetails.title}`,
+          // text: `View the code snippet here:`,
+          text: `Check out this code snippet: ${codeDetails.title}\nView it here: ${window.location.href}`,
           url: window.location.href,
         })
         .then(() => console.log("Shared successfully"))
@@ -306,7 +307,7 @@ const FullCode = () => {
 
           {/* Add Share Functionaility  */}
           <button onClick={handleShare}>
-            <Share2 />
+            <Share2 className="text-purple-700"/>
           </button>
         </div>
 
@@ -330,7 +331,7 @@ const FullCode = () => {
 
         {/* Language and Tags */}
         <div className="flex flex-wrap gap-2 mt-4">
-          <span className="text-xs font-medium px-3 py-1 bg-blue-100 text-blue-700 rounded-full">
+          <span className="text-xs font-medium px-3 py-1 bg-purple-100 text-purple-700 rounded-full">
             {codeDetails.language}
           </span>
           {codeDetails.tags.map((tag, index) => (
@@ -546,7 +547,7 @@ const FullCode = () => {
                   <h3 className="font-semibold text-lg text-gray-900">
                     {item.title}
                   </h3>
-                  <span className="text-xs font-semibold px-3 py-1 bg-blue-100 text-blue-700 rounded-full">
+                  <span className="text-xs font-semibold px-3 py-1 bg-purple-100 text-purple-700 rounded-full">
                     {item.language}
                   </span>
                 </div>

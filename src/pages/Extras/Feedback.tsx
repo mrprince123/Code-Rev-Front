@@ -38,7 +38,7 @@ const Contact = () => {
             <div className="border border-gray-300 bg-gray-50 p-5 rounded-lg mb-10">
               {/* About Code Rev. Description */}
               <p className="text-gray-600 leading-relaxed">
-                <span className="font-bold text-gray-800">Code Rev.</span> is a
+                <span className="font-bold text-purple-700">Code Rev.</span> is a
                 powerful code review platform designed to help developers
                 improve code quality, collaborate efficiently, and maintain best
                 coding practices. Whether you're an individual developer, part
@@ -314,7 +314,7 @@ const Contact = () => {
         <div className="flex flex-col gap-4 mt-5">
           <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
             <div className="flex gap-2 items-center mb-2">
-              <Link />
+              <Link className="text-purple-500" />
               Website
             </div>
             <NavLink to="https://www.princesahni.com" target="_blank">
@@ -325,7 +325,7 @@ const Contact = () => {
           </div>
           <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
             <div className="flex gap-2 items-center mb-2">
-              <Mail />
+              <Mail className="text-purple-500"/>
               Email
             </div>
             <NavLink to="princekrdss2018@gmail.com" target="_blank">
@@ -336,7 +336,7 @@ const Contact = () => {
           </div>
           <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
             <div className="flex gap-2 items-center mb-2">
-              <Github />
+              <Github className="text-purple-500"/>
               Github
             </div>
             <NavLink to="https://github.com/mrprince123" target="_blank">
@@ -347,7 +347,7 @@ const Contact = () => {
           </div>
           <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
             <div className="flex gap-2 items-center mb-2">
-              <Linkedin />
+              <Linkedin className="text-purple-500"/>
               LinkedIn
             </div>
 
