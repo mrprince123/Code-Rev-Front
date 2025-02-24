@@ -152,7 +152,92 @@ const FullPublicCode = () => {
   }, [slug]);
 
   if (!codeDetails) {
-    return <div className="text-center text-gray-600 mt-10">Loading...</div>;
+    return (
+      <div className="flex flex-col sm:flex-row  md:flex-row lg:flex-row gap-6 mt-20 mb-20">
+        {/* Full Code Shimmer  */}
+
+        <div className="w-full sm:w-2/3 lg:w-2/3 p-4 md:p-4 lg:p-6 rounded-lg shadow-sm bg-white animate-pulse">
+          {/* User Information */}
+          <div className="flex justify-between items-center mb-5">
+            <div className="flex items-center gap-4">
+              <div className="h-12 w-12 bg-gray-300 rounded-full"></div>
+              <div>
+                <div className="h-4 w-32 bg-gray-300 rounded"></div>
+                <div className="h-3 w-24 bg-gray-300 rounded mt-2"></div>
+              </div>
+            </div>
+            <div className="h-6 w-6 bg-gray-300 rounded"></div>
+          </div>
+
+          {/* Title and Description */}
+          <div className="h-6 w-3/4 bg-gray-300 rounded"></div>
+          <div className="h-4 w-5/6 bg-gray-300 rounded mt-2"></div>
+
+          {/* Created Date */}
+          <div className="flex items-center gap-2 text-gray-500 text-sm mt-4">
+            <div className="h-4 w-4 bg-gray-300 rounded"></div>
+            <div className="h-4 w-24 bg-gray-300 rounded"></div>
+          </div>
+
+          {/* Language and Tags */}
+          <div className="flex flex-wrap gap-2 mt-4">
+            <div className="h-6 w-20 bg-gray-300 rounded-full"></div>
+            <div className="h-6 w-16 bg-gray-300 rounded-full"></div>
+            <div className="h-6 w-24 bg-gray-300 rounded-full"></div>
+          </div>
+
+          {/* Code Block */}
+          <div className="mt-6 h-40 bg-gray-300 rounded-lg"></div>
+
+          {/* Like & Comments Count */}
+          <div className="flex items-center justify-between mt-6 bg-gray-100 p-4 rounded-lg">
+            <div className="h-6 w-24 bg-gray-300 rounded"></div>
+            <div className="h-6 w-24 bg-gray-300 rounded"></div>
+          </div>
+
+          {/* AI Reviews */}
+          <div className="mt-8">
+            <div className="h-6 w-32 bg-gray-300 rounded"></div>
+            <div className="mt-4 h-20 bg-gray-300 rounded"></div>
+          </div>
+
+          {/* Comments Section */}
+          <div className="mt-8">
+            <div className="h-6 w-32 bg-gray-300 rounded"></div>
+            <div className="mt-4 h-24 bg-gray-300 rounded"></div>
+          </div>
+
+          {/* Edit & Delete Buttons */}
+          <div className="mt-8 flex justify-end gap-4">
+            <div className="h-10 w-24 bg-gray-300 rounded"></div>
+            <div className="h-10 w-24 bg-gray-300 rounded"></div>
+          </div>
+        </div>
+
+        {/* Recent Code Shimmer  */}
+        <div className="w-full sm:w-1/3 lg:w-1/3 p-6 shadow-sm rounded-lg bg-white max-h-max">
+          <div className="h-6 bg-gray-300 rounded w-1/2 animate-pulse"></div>
+
+          <div className="flex flex-col gap-4 mt-5">
+            {Array(5)
+              .fill(0)
+              .map((_, index) => (
+                <div
+                  key={index}
+                  className="border border-gray-200 p-5 rounded-lg bg-gray-50 animate-pulse"
+                >
+                  <div className="flex justify-between items-center mb-3">
+                    <div className="h-5 bg-gray-300 rounded w-3/4"></div>
+                    <div className="h-5 bg-purple-200 rounded-full w-16"></div>
+                  </div>
+                  <div className="h-4 bg-gray-300 rounded w-full mb-2"></div>
+                  <div className="h-4 bg-gray-300 rounded w-5/6"></div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </div>
+    );
   }
 
   // Language Selection

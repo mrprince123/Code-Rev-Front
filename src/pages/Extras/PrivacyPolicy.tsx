@@ -113,7 +113,7 @@ const PrivacyPolicy = () => {
         </ul>
         <p className="text-gray-600 mb-6">
           To exercise any of these rights, please contact us at{" "}
-          <strong className="text-blue-500">support@coderev.com</strong>.
+          <strong className="text-purple-500">support@coderev.com</strong>.
         </p>
 
         {/* Policy Updates */}
@@ -133,7 +133,7 @@ const PrivacyPolicy = () => {
           please reach out to us at:
         </p>
         <p className="text-gray-700 font-semibold text-lg mb-2">
-          📧 Email: <span className="text-blue-500">support@coderev.com</span>
+          📧 Email: <span className="text-purple-500">support@coderev.com</span>
         </p>
 
         {/* Last Updated */}

@@ -1,6 +1,6 @@
 import { baseUrl } from "../App";
 import axios from "axios";
-import { SearchCheck, ThumbsUp } from "lucide-react";
+import { Divide, SearchCheck, ThumbsUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { javascript } from "@codemirror/lang-javascript";
@@ -44,6 +44,7 @@ const Codes = () => {
   const [codes, setCodes] = useState<Code[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
   const limit = 6;
 
   const { user } = useSelector((state: RootState) => state.auth); // Get auth state
@@ -59,6 +60,8 @@ const Codes = () => {
       setTotalPages(response.data.totalPages);
     } catch (error) {
       console.log("Error while fetching codes:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -126,83 +129,121 @@ const Codes = () => {
         </button>
       </div>
 
-      {/* show all codes for Review here  */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-        {codes.length > 0 ? (
-          codes.map((item, id) => (
-            <div key={id} className="shadow-sm rounded-lg p-4 bg-white">
-              <div className="">
-                <h2 className="font-medium text-lg">{item.title}</h2>
-                <p className="text-gray-500 mb-2 text-sm">
-                  {item.description.substring(0, 50)}...
-                </p>
-                {/* Language and Tags */}
-                <div className="flex flex-wrap gap-2 mt-3 mb-3">
-                  <span className="text-xs font-medium px-3 py-1 bg-purple-100 text-purple-700 rounded-full">
-                    {item.language}
-                  </span>
-                  {item.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="text-xs font-medium px-3 py-1 bg-gray-100 text-gray-800 rounded-full"
-                    >
-                      {tag}
+      {/* Loading Spinner  */}
+      {loading ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+          {[...Array(6)].map((_, index) => (
+            <div
+              key={index}
+              className="shadow-sm rounded-lg p-4 bg-white animate-pulse"
+            >
+              {/* Title Placeholder */}
+              <div className="h-6 bg-gray-200 rounded-full w-3/4 mb-2"></div>
+
+              {/* Description Placeholder */}
+              <div className="h-4 bg-gray-200 rounded-full w-full mb-4"></div>
+
+              {/* Language and Tags Placeholder */}
+              <div className="flex flex-wrap gap-2 mt-3 mb-3">
+                <div className="h-6 bg-gray-200 rounded-full w-16"></div>
+                <div className="h-6 bg-gray-200 rounded-full w-20"></div>
+                <div className="h-6 bg-gray-200 rounded-full w-14"></div>
+              </div>
+
+              {/* CodeMirror Placeholder */}
+              <div className="border bg-gray-200 text-sm border-gray-300 rounded-lg h-72 overflow-hidden"></div>
+
+              {/* Like and View Full Button Placeholder */}
+              <div className="flex justify-between mt-5">
+                <div className="flex items-center gap-2">
+                  <div className="h-6 w-6 bg-gray-200 rounded-full"></div>
+                  <div className="h-6 bg-gray-200 rounded-full w-8"></div>
+                </div>
+                <div className="h-8 bg-gray-200 rounded-lg w-24"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        /* show all codes for Review here  */
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+          {codes.length > 0 ? (
+            codes.map((item, id) => (
+              <div key={id} className="shadow-sm rounded-lg p-4 bg-white">
+                <div className="">
+                  <h2 className="font-medium text-lg">{item.title}</h2>
+                  <p className="text-gray-500 mb-2 text-sm">
+                    {item.description.substring(0, 50)}...
+                  </p>
+                  {/* Language and Tags */}
+                  <div className="flex flex-wrap gap-2 mt-3 mb-3">
+                    <span className="text-xs font-medium px-3 py-1 bg-purple-100 text-purple-700 rounded-full">
+                      {item.language}
                     </span>
-                  ))}
+                    {item.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="text-xs font-medium px-3 py-1 bg-gray-100 text-gray-800 rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <CodeMirror
+                  value={item.code}
+                  theme={vscodeLight}
+                  height="auto"
+                  extensions={[
+                    EditorState.readOnly.of(true),
+                    getLanguageExtension(item.language),
+                    EditorView.lineWrapping,
+                  ]}
+                  basicSetup={{
+                    lineNumbers: false, // Disable line numbers
+                    foldGutter: false, // Disable code folding
+                  }}
+                  className="border text-sm border-gray-300 rounded-lg h-72 overflow-hidden overflow-x-auto"
+                />
+
+                {/* Like Count and Like Logo  */}
+                <div className="flex justify-between mt-5">
+                  <button
+                    onClick={() => addLikes(item._id)}
+                    className="flex items-center gap-2"
+                  >
+                    {item.likes.some(
+                      (like) => like.userId === loggedInUserId
+                    ) ? (
+                      <ThumbsUp size={18} className="text-purple-600" />
+                    ) : (
+                      <ThumbsUp size={18} />
+                    )}
+                    <p className="text-lg">{item.likes.length}</p>
+                  </button>
+                  <button className="bg-black text-white font-medium rounded-lg text-sm p-2">
+                    <NavLink to={`/full-code/public/${item.slug}`}>
+                      View Full
+                    </NavLink>
+                  </button>
                 </div>
               </div>
-
-              <CodeMirror
-                value={item.code}
-                theme={vscodeLight}
-                height="auto"
-                extensions={[
-                  EditorState.readOnly.of(true),
-                  getLanguageExtension(item.language),
-                  EditorView.lineWrapping,
-                ]}
-                basicSetup={{
-                  lineNumbers: false, // Disable line numbers
-                  foldGutter: false, // Disable code folding
-                }}
-                className="border text-sm border-gray-300 rounded-lg h-72 overflow-hidden overflow-x-auto"
-              />
-
-              {/* Like Count and Like Logo  */}
-              <div className="flex justify-between mt-5">
-                <button
-                  onClick={() => addLikes(item._id)}
-                  className="flex items-center gap-2"
-                >
-                  {item.likes.some((like) => like.userId === loggedInUserId) ? (
-                    <ThumbsUp size={18} className="text-purple-600"/>
-                  ) : (
-                    <ThumbsUp size={18} />
-                    
-                  )}
-                  <p className="text-lg">{item.likes.length}</p>
-                </button>
-                <button className="bg-black text-white font-medium rounded-lg text-sm p-2">
-                  <NavLink to={`/full-code/public/${item.slug}`}>
-                    View Full
-                  </NavLink>
-                </button>
+            ))
+          ) : (
+            <div className="rounded-lg bg-white p-4">
+              <div className="flex gap-2 items-center mb-2">
+                <SearchCheck size={18} className="text-purple-600" />
+                <h3 className="font-medium text-md">No Code Found</h3>
               </div>
+              <p className="text-gray-600">
+                No public code found, click on add codes button to add some code
+                for review and make it public.
+              </p>
             </div>
-          ))
-        ) : (
-          <div className="rounded-lg bg-white p-4">
-            <div className="flex gap-2 items-center mb-2">
-              <SearchCheck size={18} />
-              <h3 className="font-medium text-md">No Code Found</h3>
-            </div>
-            <p className="text-gray-600">
-              No public code found, click on add codes button to add some code
-              for review and make it public.
-            </p>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
 
       {/* Pagination Controls */}
       <nav aria-label="Page navigation">

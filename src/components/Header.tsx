@@ -62,7 +62,16 @@ const Header = () => {
               </>
             ) : (
               <div className="flex gap-4">
-                <NavLink to="/profile">
+                <NavLink
+                  to="/profile"
+                  className={({ isActive }) =>
+                    `p-[2px] rounded-full ${
+                      isActive
+                        ? "border-2 border-purple-500"
+                        : "border-2 border-transparent"
+                    }`
+                  }
+                >
                   <img
                     className="h-10 w-10 rounded-full object-cover"
                     src={userProfilePic}
