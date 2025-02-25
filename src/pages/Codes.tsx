@@ -1,6 +1,6 @@
 import { baseUrl } from "../App";
 import axios from "axios";
-import { Divide, SearchCheck, ThumbsUp } from "lucide-react";
+import { SearchCheck, ThumbsUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { javascript } from "@codemirror/lang-javascript";
