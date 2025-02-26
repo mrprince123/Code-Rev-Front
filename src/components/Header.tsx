@@ -61,7 +61,7 @@ const Header = () => {
                 </NavLink>
               </>
             ) : (
-              <div className="flex gap-4">
+              <div className="flex items-center gap-4">
                 <NavLink
                   to="/profile"
                   className={({ isActive }) =>
@@ -154,6 +154,7 @@ const Header = () => {
                   Codes
                 </NavLink>
               </li>
+
               {isAuthenticated && (
                 <li>
                   <NavLink
@@ -168,6 +169,18 @@ const Header = () => {
                   </NavLink>
                 </li>
               )}
+              <li>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block py-2 pr-4 pl-3 text-indigo-600 font-semibold border-b-2 border-indigo-600 hover:bg-gray-100 lg:hover:bg-transparent lg:border-0 lg:hover:text-indigo-700 lg:p-0 dark:text-indigo-400 lg:dark:hover:text-indigo-300 dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-300"
+                      : "block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 transition-all duration-300"
+                  }
+                >
+                  About
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/feedback"

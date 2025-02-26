@@ -5,6 +5,13 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { profileUpdate } from "../Redux/AuthSlice";
 import toast, { Toaster } from "react-hot-toast";
+import {
+  Briefcase,
+  Camera,
+  Heart,
+  Mail,
+  User,
+} from "lucide-react";
 
 const UserUpdate = () => {
   const dispatch = useDispatch();
@@ -94,7 +101,7 @@ const UserUpdate = () => {
   return (
     <div className="flex flex-col sm:flex-row gap-6 mt-20 mb-20 px-4 sm:px-0">
       {/* Profile Update Section */}
-      <section className="bg-white rounded-lg w-full sm:w-2/3">
+      <section className="bg-white rounded-lg w-full sm:w-2/3 max-h-max">
         <div className="max-w-4xl p-2 mx-auto">
           <div className="bg-white rounded-xl p-4 sm:p-7 dark:bg-neutral-800">
             <div className="mb-8">
@@ -118,10 +125,7 @@ const UserUpdate = () => {
                   <div className="flex items-center gap-5">
                     <img
                       className="inline-block size-16 object-cover rounded-full ring-2 ring-white dark:ring-neutral-900"
-                      src={
-                        profilePicturePreview ||
-                        `${profilePicture}`
-                      }
+                      src={profilePicturePreview || `${profilePicture}`}
                       alt="User Profile Image"
                     />
                     <div className="flex w-full">
@@ -306,15 +310,80 @@ const UserUpdate = () => {
         </div>
       </section>
 
-      {/* Profile Info Section */}
-      <div className="w-full sm:w-1/3 p-6 shadow-sm rounded-lg bg-white max-h-max">
-        <h2 className="text-2xl font-bold text-gray-800">Profile Info.</h2>
+      {/* Profile Update Guideline Section */}
+      <div className="w-full sm:w-1/3 p-6 shadow-sm rounded-lg bg-white dark:bg-gray-800 max-h-max">
+        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+          Profile Information Guidelines
+        </h2>
+
         <div className="flex flex-col gap-4 mt-5">
-          <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
-            <p className="text-gray-600 text-sm leading-relaxed">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos
-              sequi repellendus sint a quos laudantium, rerum necessitatibus
-              nulla maxime velit!
+          {/* Profile Picture */}
+          <div className="border border-gray-200 dark:border-gray-600 p-5 rounded-lg bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-center gap-2 mb-2">
+              <Camera className="text-purple-600 dark:text-purple-400" />
+              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                Profile Picture
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+              Upload a clear, recognizable photo of yourself. Recommended size:
+              500x500px. Supported formats: JPG, PNG.
+            </p>
+          </div>
+
+          {/* Profile Bio */}
+          <div className="border border-gray-200 dark:border-gray-600 p-5 rounded-lg bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-center gap-2 mb-2">
+              <User className="text-purple-600 dark:text-purple-400" />
+              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                Profile Bio
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+              Write a concise bio (max 150 characters) highlighting your
+              expertise, interests, or current focus in development.
+            </p>
+          </div>
+
+          {/* Email */}
+          <div className="border border-gray-200 dark:border-gray-600 p-5 rounded-lg bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-center gap-2 mb-2">
+              <Mail className="text-purple-600 dark:text-purple-400" />
+              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                Email Address
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+              Maintain an active, verified email for account security and
+              notifications. We never share your email publicly.
+            </p>
+          </div>
+
+          {/* Role */}
+          <div className="border border-gray-200 dark:border-gray-600 p-5 rounded-lg bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-center gap-2 mb-2">
+              <Briefcase className="text-purple-600 dark:text-purple-400" />
+              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                Development Role
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+              Select your primary role (e.g., Frontend Developer, Student, Tech
+              Lead) to help personalize your experience.
+            </p>
+          </div>
+
+          {/* Gender */}
+          <div className="border border-gray-200 dark:border-gray-600 p-5 rounded-lg bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-shadow duration-200">
+            <div className="flex items-center gap-2 mb-2">
+              <Heart className="text-purple-600 dark:text-purple-400" />
+              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+                Gender Identity
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+              Optional field to help us create an inclusive community. Select
+              "Prefer not to say" if you'd rather not share.
             </p>
           </div>
         </div>

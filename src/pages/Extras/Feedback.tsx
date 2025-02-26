@@ -1,24 +1,31 @@
 import axios from "axios";
 import { Github, Link, Linkedin, Mail } from "lucide-react";
-// import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { useState } from "react";
+import { baseUrl } from "../../App";
+import ContactImage from "../../assets/contact team.webp";
 
 const Contact = () => {
-  // const [purpose, setPurpose] = useState<string>("");
-  // const [feedback, setFeedBack] = useState<string>("");
+  const [purpose, setPurpose] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     try {
-      const url = "";
+      const url = `${baseUrl}/feedback/create`;
       const response = await axios.post(
         url,
-        { },
+        { purpose, message },
         { withCredentials: true }
       );
       console.log("Response while Feedback", response);
       toast.success(response.data.message);
-    } catch (error : any) {
+
+      // Clear the form after successful submission
+      setPurpose("");
+      setMessage("");
+    } catch (error: any) {
       console.log("Error while Sending Feedback", error);
       toast.error(error.response.data.message);
     }
@@ -32,215 +39,21 @@ const Contact = () => {
           <div className="rounded-lg max-w-3xl mx-auto">
             {/* About Code Rev. Header */}
             <h2 className="text-3xl font-semibold text-black mb-4 border-gray-300 pb-2">
-              About Code Rev.
+              Contact Us.
             </h2>
 
             <div className="border border-gray-300 bg-gray-50 p-5 rounded-lg mb-10">
-              {/* About Code Rev. Description */}
-              <p className="text-gray-600 leading-relaxed">
-                <span className="font-bold text-purple-700">Code Rev.</span> is a
-                powerful code review platform designed to help developers
-                improve code quality, collaborate efficiently, and maintain best
-                coding practices. Whether you're an individual developer, part
-                of a team, or managing open-source projects, Code Rev. provides
-                a streamlined and interactive environment for reviewing and
-                refining code.
-              </p>
-
-              {/* Key Features */}
-              <div className="mt-6 space-y-4">
-                <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-                  Key Features
-                </h3>
-
-                {/* Collaborative Code Review */}
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl">🤝</span>
-                  <p className="text-gray-700">
-                    <span className="font-semibold">
-                      Collaborative Code Review –
-                    </span>
-                    Developers can submit their code for review, receive
-                    constructive feedback, and improve their coding skills with
-                    insights from peers and mentors.
-                  </p>
-                </div>
-
-                {/* Inline Commenting */}
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl">💬</span>
-                  <p className="text-gray-700">
-                    <span className="font-semibold">Inline Commenting –</span>
-                    Users can leave comments directly on specific lines of code,
-                    making feedback clear, contextual, and actionable.
-                  </p>
-                </div>
-
-                {/* AI-Powered Code Suggestions */}
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl">🤖</span>
-                  <p className="text-gray-700">
-                    <span className="font-semibold">
-                      AI-Powered Code Suggestions –
-                    </span>
-                    Intelligent AI-driven recommendations help identify
-                    potential bugs, optimize performance, and improve code
-                    readability.
-                  </p>
-                </div>
-
-                {/* Version Control Integration */}
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl">🔄</span>
-                  <p className="text-gray-700">
-                    <span className="font-semibold">
-                      Version Control Integration –
-                    </span>
-                    Seamlessly integrates with GitHub, GitLab, and Bitbucket,
-                    allowing developers to review pull requests and commit
-                    history effortlessly.
-                  </p>
-                </div>
-
-                {/* Code Quality Metrics */}
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl">📊</span>
-                  <p className="text-gray-700">
-                    <span className="font-semibold">
-                      Code Quality Metrics –
-                    </span>
-                    Get insights into code maintainability, complexity, and
-                    potential vulnerabilities with detailed analysis reports.
-                  </p>
-                </div>
-
-                {/* Secure and Private */}
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl">🔒</span>
-                  <p className="text-gray-700">
-                    <span className="font-semibold">Secure and Private –</span>
-                    Code Rev. ensures data protection with end-to-end
-                    encryption, role-based access controls, and private
-                    repositories for confidential projects.
-                  </p>
-                </div>
-              </div>
-
-              {/* Why Choose Code Rev? */}
-              <div className="mt-6">
-                <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-                  Why Choose Code Rev.?
-                </h3>
-                <p className="text-gray-700">
-                  Code Rev. is more than just a code review tool; it’s a
-                  complete ecosystem for developers and teams to enhance
-                  collaboration, maintain high-quality standards, and accelerate
-                  project development. With an intuitive interface and advanced
-                  automation, it empowers developers to write better code,
-                  reduce technical debt, and learn from industry best practices.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg max-w-3xl mx-auto">
-            {/* About Me Header */}
-            <h2 className="text-3xl font-semibold text-black mb-2 border-gray-500 pb-2">
-              About Me
-            </h2>
-
-            <div className="border border-gray-300 bg-gray-50 p-4 rounded-lg">
-              {/* About Me Description */}
-              <p className="text-gray-600 leading-relaxed">
-                Hello! I’m{" "}
-                <span className="font-bold text-gray-800">
-                  Prince Kumar Sahni
-                </span>
-                , a passionate full-stack developer and tech enthusiast with
-                expertise in
-                <span className="font-medium text-gray-600">
-                  {" "}
-                  PHP, JavaScript, React, Next.js,
-                </span>{" "}
-                and
-                <span className="font-medium text-gray-600">
-                  {" "}
-                  Android development
-                </span>
-                . I love building innovative digital solutions that enhance user
-                experiences and solve real-world problems.
-              </p>
-
-              {/* What I Do Section */}
-              <div className="mt-6 space-y-4">
-                <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-                  What I Do
-                </h3>
-
-                {/* Web Development */}
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">🌐</span>
-                  <p className="text-gray-700">
-                    <span className="font-semibold">Web Development –</span> I
-                    specialize in building scalable and dynamic web applications
-                    using modern technologies like{" "}
-                    <span className="text-gray-600 font-medium">
-                      React, Next.js, and PHP
-                    </span>
-                    .
-                  </p>
-                </div>
-
-                {/* Android Development */}
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">📱</span>
-                  <p className="text-gray-700">
-                    <span className="font-semibold">Android Development –</span>{" "}
-                    I create feature-rich Android applications, including my
-                    cooking recipe app and chat application with video calling
-                    using
-                    <span className="text-gray-600 font-medium">
-                      {" "}
-                      Java & Firebase
-                    </span>
-                    .
-                  </p>
-                </div>
-
-                {/* Project Management */}
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">🚀</span>
-                  <p className="text-gray-700">
-                    <span className="font-semibold">Project Management –</span>{" "}
-                    I built
-                    <span className="text-gray-600 font-medium"> Projex</span>,
-                    a project management system that helps users organize and
-                    track their projects effectively.
-                  </p>
-                </div>
-
-                {/* Content Creation */}
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">✍️</span>
-                  <p className="text-gray-700">
-                    <span className="font-semibold">Content Creator –</span> I
-                    actively share my knowledge on
-                    <span className="text-gray-600 font-medium">
-                      {" "}
-                      Sahni Dev Resources
-                    </span>
-                    , my LinkedIn page dedicated to programming, development
-                    resources, and tech insights.
-                  </p>
-                </div>
-              </div>
+              <img
+                src={ContactImage}
+                alt="Contact Image Team"
+                className="rounded-lg"
+              />
             </div>
           </div>
 
           {/* Make a Form with these input purpose and feedback input  and submit button */}
           <form
             onSubmit={handleSubmit}
-            method="post"
             className="bg-white rounded-lg max-w-3xl mx-auto mt-10"
           >
             <h2 className="text-2xl font-semibold text-black mb-2 border-gray-500 pb-2">
@@ -265,6 +78,8 @@ const Contact = () => {
                 <select
                   id="purpose"
                   name="purpose"
+                  value={purpose}
+                  onChange={(e) => setPurpose(e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
                   required
                 >
@@ -290,6 +105,8 @@ const Contact = () => {
                   id="feedback"
                   name="feedback"
                   rows={4}
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   placeholder="Write your feedback here..."
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
                   required
@@ -325,7 +142,7 @@ const Contact = () => {
           </div>
           <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
             <div className="flex gap-2 items-center mb-2">
-              <Mail className="text-purple-500"/>
+              <Mail className="text-purple-500" />
               Email
             </div>
             <NavLink to="princekrdss2018@gmail.com" target="_blank">
@@ -336,7 +153,7 @@ const Contact = () => {
           </div>
           <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
             <div className="flex gap-2 items-center mb-2">
-              <Github className="text-purple-500"/>
+              <Github className="text-purple-500" />
               Github
             </div>
             <NavLink to="https://github.com/mrprince123" target="_blank">
@@ -347,7 +164,7 @@ const Contact = () => {
           </div>
           <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
             <div className="flex gap-2 items-center mb-2">
-              <Linkedin className="text-purple-500"/>
+              <Linkedin className="text-purple-500" />
               LinkedIn
             </div>
 

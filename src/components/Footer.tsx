@@ -24,13 +24,13 @@ const Footer = () => {
         {/* Links Section */}
         <ul className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm md:text-base text-gray-900 dark:text-white">
           <li>
-            <a href="#" className=" hover:text-purple-600">
-              About
-            </a>
-          </li>
-          <li>
             <NavLink to="/" className=" hover:text-purple-600">
               Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about" className=" hover:text-purple-600">
+              About
             </NavLink>
           </li>
           <li>

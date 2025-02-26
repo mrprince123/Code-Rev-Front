@@ -6,6 +6,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ['Nunito', 'Roboto', 'sans-serif'], // Set Roboto as the default sans font
+    },
     extend: {},
   },
   plugins: [],

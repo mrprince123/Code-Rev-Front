@@ -16,6 +16,7 @@ import NotFound from "../pages/NotFound";
 import PrivacyPolicy from "../pages/Extras/PrivacyPolicy";
 import AuthRedirectGuard from "../guards/AuthRedirectGuard";
 import AuthGuard from "../guards/AuthGuard";
+import About from "../pages/Extras/About";
 
 const AppRouter = () => {
   return (
@@ -28,6 +29,7 @@ const AppRouter = () => {
           <Route path="/full-code/public/:slug" element={<FullPublicCode />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Route>
 
