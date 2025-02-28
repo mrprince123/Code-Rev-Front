@@ -142,7 +142,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <div className="container mx-auto py-8 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 sm:grid-cols-12 gap-6">
         {/* Profile Section */}
         <div className="col-span-1 sm:col-span-3">
@@ -191,7 +191,7 @@ const Profile = () => {
 
         {/* Code Submissions Section */}
         <div className="col-span-1 sm:col-span-9">
-          <div className="bg-white shadow-sm rounded-lg p-6">
+          <div className="bg-white shadow-sm rounded-lg p-4 sm:p-6">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold">Recent Code Submit</h2>
               <NavLink

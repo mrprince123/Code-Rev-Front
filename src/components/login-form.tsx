@@ -5,6 +5,7 @@ import { baseUrl } from "../App";
 import { useDispatch } from "react-redux";
 import { login } from "../Redux/AuthSlice";
 import toast, { Toaster } from "react-hot-toast";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 
 export function LoginForm() {
   const navigate = useNavigate();
@@ -34,6 +35,33 @@ export function LoginForm() {
       toast.error(error.response.data.message);
       console.error("Login failed", error);
     }
+  };
+
+  // Add this inside your component
+  const handleGoogleLoginSuccess = async (credentialResponse: any) => {
+    try {
+      const token = credentialResponse.credential;
+      const url = `${baseUrl}/auth/google`;
+      const response = await axios.post(
+        url,
+        { token },
+        { withCredentials: true }
+      );
+      dispatch(
+        login({ user: response.data.data, token: response.data.accessToken })
+      );
+      toast.success(response.data.message);
+      navigate(from, { replace: true });
+      console.log("Res while google login", response);
+    } catch (error: any) {
+      toast.error(error.response.data.message);
+      console.error("Login failed", error);
+    }
+  };
+
+  const handleGoogleLoginError = () => {
+    console.log("Google Login Failed");
+    toast.error("Google Login Failed. Please try again.");
   };
 
   return (
@@ -87,19 +115,13 @@ export function LoginForm() {
           <div className="flex-1 border-t border-gray-300"></div>
         </div>
         <div className="flex justify-center">
-          <button className="rounded-lg p-2 border  border-gray-300 flex items-center justify-center gap-2 w-max">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-                fill="currentColor"
-              />
-            </svg>
-            Login with Google
-          </button>
+          {/* Google Login Button  */}
+          <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+            <GoogleLogin
+              onSuccess={handleGoogleLoginSuccess}
+              onError={handleGoogleLoginError}
+            />
+          </GoogleOAuthProvider>
         </div>
       </div>
       <div className="text-center text-sm">

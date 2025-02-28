@@ -1,12 +1,25 @@
+import { useState } from "react";
 import CodeRevTeam from "../../assets/contact team.webp";
-import Video from "../../assets/www.princesahni.com (1).mp4";
+import Video from "../../assets/CodeRevVideo.mp4";
+import toast, { Toaster } from "react-hot-toast";
+
 const About = () => {
+  const [email, setEmail] = useState<string>("");
+
+  const handleUpcomingFeature = () => {
+    try {
+      toast.success("Thanks for Registering Code Rev Updates");
+      setEmail("");
+    } catch (error) {
+      toast.error("Error whilte Registering Code Rev Updates");
+    }
+  };
+
   return (
     <div className="dark:bg-gray-900 min-h-screen">
       {/* Hero Section */}
       <section className="py-14 lg:py-24 relative z-0  dark:bg-gray-800">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative text-center">
-          
           <h1 className="max-w-2xl mx-auto text-center font-manrope font-bold text-4xl text-gray-900 dark:text-white mb-5 md:text-5xl md:leading-normal">
             Elevate Your Code Quality with{" "}
             <span className="text-indigo-600">Code Rev</span>
@@ -157,12 +170,15 @@ const About = () => {
             </p>
             <div className="max-w-md mx-auto lg:bg-transparent lg:border border-gray-300 rounded-3xl max-lg:py-3 lg:rounded-full lg:h-12 lg:p-1.5 lg:flex-row gap-6 lg:gap-0 flex-col flex items-center justify-between">
               <input
-                type="text"
+                type="email"
                 name="email"
-                className="py-2 px-6 bg-transparent rounded-full max-lg:border border-gray-300 text-gray-100 max-lg:text-center placeholder:text-gray-400 focus:outline-none flex-1 w-full lg:w-auto lg:py-2 lg:px-6 lg:bg-transparent"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="py-2 px-6 bg-transparent rounded-full max-lg:border border-white text-gray-200 max-lg:text-center placeholder:text-gray-100 focus:outline-none flex-1 w-full lg:w-auto lg:py-2 lg:px-6 lg:bg-transparent"
                 placeholder="Enter your email.."
               />
               <button
+                onClick={handleUpcomingFeature}
                 type="submit"
                 className="py-2 px-5 text-sm bg-indigo-500 shadow-md rounded-full text-white font-semibold hover:bg-indigo-700"
               >
@@ -172,7 +188,8 @@ const About = () => {
           </div>
         </div>
       </section>
-      
+
+      <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { baseUrl } from "../App";
 import axios from "axios";
-import { SearchCheck, ThumbsUp } from "lucide-react";
+import { ListFilterPlus, SearchCheck, ThumbsUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { javascript } from "@codemirror/lang-javascript";
@@ -42,9 +42,14 @@ interface Code {
 
 const Codes = () => {
   const [codes, setCodes] = useState<Code[]>([]);
+  const [filterCodes, setFilterCodes] = useState<Code[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [showFiter, setShowFilter] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState<string>("");
+  const [selectedTag, setSelectedTag] = useState<string>("");
+
   const limit = 6;
 
   const { user } = useSelector((state: RootState) => state.auth); // Get auth state
@@ -57,6 +62,7 @@ const Codes = () => {
       const response = await axios.get(url, { withCredentials: true });
       console.log("Response of all Codes ", response);
       setCodes(response.data.data);
+      setFilterCodes(response.data.data);
       setTotalPages(response.data.totalPages);
     } catch (error) {
       console.log("Error while fetching codes:", error);
@@ -118,15 +124,124 @@ const Codes = () => {
     }
   };
 
+  // Toggle Fiter Options
+  const toggleFiterOptions = async () => {
+    setShowFilter((prev) => !prev);
+  };
+
+  // Filter Code Trigger
+  useEffect(() => {
+    handleFilter();
+  }, [selectedLanguage, selectedTag, codes]);
+
+  // Filter Codes
+  const handleFilter = async () => {
+    try {
+      const filterCodes = codes.filter((code) => {
+        const matchesLanguage =
+          selectedLanguage === "" || code.language === selectedLanguage;
+
+        const matchesTag =
+          selectedTag === "" || code.tags.includes(selectedTag.toLowerCase());
+
+        return matchesLanguage && matchesTag;
+      });
+      setFilterCodes(filterCodes);
+    } catch (error) {
+      console.log("Error while filtering codes : ", error);
+    }
+  };
+
   return (
     <div>
       <h1 className="font-medium text-2xl mb-5 mt-5">Public Codes</h1>
 
-      {/* Title and Button  */}
-      <div className="flex justify-end mb-10">
-        <button className="bg-black text-white font-medium p-2 rounded-lg text-sm">
-          <NavLink to="/submit-code">Add Codes</NavLink>
-        </button>
+      {/* Filter Container */}
+      <div className="flex flex-col items-end gap-2 mb-10">
+        {/* Buttons Row */}
+        <div className="flex gap-2">
+          <button
+            onClick={toggleFiterOptions}
+            className="bg-black text-white font-medium p-2 rounded-lg text-sm"
+          >
+            <ListFilterPlus />
+          </button>
+          <button className="bg-black text-white font-medium p-2 rounded-lg text-sm">
+            <NavLink to="/submit-code">Add Codes</NavLink>
+          </button>
+        </div>
+
+        {/* Filter Options (Hidden by Default, Shown when showFilter is true) */}
+        {showFiter && (
+          <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+            <select
+              onChange={(e) => setSelectedLanguage(e.target.value)}
+              value={selectedLanguage}
+              className="rounded-lg border border-gray-300 p-2 w-full sm:w-auto"
+            >
+              <option value="">Select Code Language</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="Python">Python</option>
+              <option value="Java">Java</option>
+              <option value="C">C</option>
+              <option value="C++">C++</option>
+              <option value="PHP">PHP</option>
+              <option value="Go">Go</option>
+              <option value="Rust">Rust</option>
+              <option value="SQL">SQL</option>
+              <option value="Markdown">Markdown</option>
+              <option value="JSON">JSON</option>
+              <option value="XML">XML</option>
+              <option value="HTML">HTML</option>
+              <option value="CSS">CSS</option>
+            </select>
+
+            <select
+              onChange={(e) => setSelectedTag(e.target.value)}
+              value={selectedTag}
+              className="rounded-lg border border-gray-300 p-2 w-full sm:w-auto"
+            >
+              <option value="">Select Tag</option>
+              <option value="web-development">Web Development</option>
+              <option value="mobile-development">Mobile Development</option>
+              <option value="bugfix">Bug Fix</option>
+              <option value="sorting">Sorting</option>
+              <option value="algorithm">Algorithm</option>
+              <option value="optimization">Optimization</option>
+              <option value="data-structure">Data Structure</option>
+              <option value="performance">Performance</option>
+              <option value="security">Security</option>
+              <option value="best-practices">Best Practices</option>
+              <option value="API">API</option>
+              <option value="database">Database</option>
+              <option value="authentication">Authentication</option>
+              <option value="authorization">Authorization</option>
+              <option value="machine-learning">Machine Learning</option>
+              <option value="frontend">Frontend</option>
+              <option value="backend">Backend</option>
+              <option value="fullstack">Full Stack</option>
+              <option value="UI/UX">UI/UX</option>
+              <option value="testing">Testing</option>
+              <option value="debugging">Debugging</option>
+              <option value="deployment">Deployment</option>
+              <option value="cloud">Cloud</option>
+              <option value="devops">DevOps</option>
+              <option value="web-scraping">Web Scraping</option>
+              <option value="game-development">Game Development</option>
+              <option value="AI">Artificial Intelligence</option>
+              <option value="blockchain">Blockchain</option>
+              <option value="networking">Networking</option>
+              <option value="recursion">Recursion</option>
+              <option value="dynamic-programming">Dynamic Programming</option>
+              <option value="greedy">Greedy</option>
+              <option value="graph-theory">Graph Theory</option>
+              <option value="bit-manipulation">Bit Manipulation</option>
+              <option value="string-manipulation">String Manipulation</option>
+              <option value="mathematics">Mathematics</option>
+              <option value="regex">Regular Expressions</option>
+            </select>
+          </div>
+        )}
       </div>
 
       {/* Loading Spinner  */}
@@ -167,8 +282,8 @@ const Codes = () => {
       ) : (
         /* show all codes for Review here  */
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-          {codes.length > 0 ? (
-            codes.map((item, id) => (
+          {filterCodes.length > 0 ? (
+            filterCodes.map((item, id) => (
               <div key={id} className="shadow-sm rounded-lg p-4 bg-white">
                 <div className="">
                   <h2 className="font-medium text-lg">{item.title}</h2>

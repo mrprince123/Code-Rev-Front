@@ -42,7 +42,7 @@ const Contact = () => {
               Contact Us.
             </h2>
 
-            <div className="border border-gray-300 bg-gray-50 p-5 rounded-lg mb-10">
+            <div className="border border-gray-300 bg-gray-50 p-4 rounded-lg mb-10">
               <img
                 src={ContactImage}
                 alt="Contact Image Team"

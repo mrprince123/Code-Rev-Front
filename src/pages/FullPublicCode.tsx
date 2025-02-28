@@ -65,6 +65,7 @@ interface Code {
 
 interface RecentCode {
   _id: any;
+  slug: string;
   title: string;
   description: string;
   language: string;
@@ -587,7 +588,7 @@ const FullPublicCode = () => {
 
         <div className="flex flex-col gap-4 mt-5">
           {recentCode.map((item, id) => (
-            <NavLink to={`/full-code/public/${item._id}`} key={id}>
+            <NavLink to={`/full-code/public/${item.slug}`} key={id}>
               <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="font-semibold text-lg text-gray-900">

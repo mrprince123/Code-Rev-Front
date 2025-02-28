@@ -7,7 +7,6 @@ import {
   Edit,
   MessageCircle,
   Calendar,
-  Share2,
   Pencil,
   Trash2,
   MessageCircleCode,
@@ -66,6 +65,7 @@ interface Code {
 
 interface RecentCode {
   _id: string;
+  slug: string;
   title: string;
   description: string;
   language: string;
@@ -259,23 +259,6 @@ const FullCode = () => {
     }
   };
 
-  // Share Functionality
-  const handleShare = () => {
-    if (navigator.share) {
-      navigator
-        .share({
-          // title: `Check out this code snippet: ${codeDetails.title}`,
-          // text: `View the code snippet here:`,
-          text: `Check out this code snippet: ${codeDetails.title}\nView it here: ${window.location.href}`,
-          url: window.location.href,
-        })
-        .then(() => console.log("Shared successfully"))
-        .catch((error) => console.error("Error sharing:", error));
-    } else {
-      alert("Sharing is not supported on this device.");
-    }
-  };
-
   // Language Selection
   const getLanguageExtension = () => {
     switch (codeDetails.language) {
@@ -368,7 +351,7 @@ const FullCode = () => {
   return (
     <div className="flex flex-col sm:flex-row  md:flex-row lg:flex-row gap-6 mt-20 mb-20">
       {/* Here Show the Full Details of the Codes */}
-      <div className="w-full sm:w-2/3 lg:w-2/3  p-4 md:p-4 lg:p-6 rounded-lg shadow-sm bg-white">
+      <div className="w-full sm:w-2/3 lg:w-2/3 p-4 md:p-4 lg:p-6 rounded-lg shadow-sm bg-white">
         {/* User Information  */}
         <div className="flex justify-between items-center mb-5">
           {/* User Details */}
@@ -389,11 +372,6 @@ const FullCode = () => {
               </div>
             </div>
           </div>
-
-          {/* Add Share Functionaility  */}
-          <button onClick={handleShare}>
-            <Share2 className="text-purple-700" />
-          </button>
         </div>
 
         {/* Title and Description */}
@@ -626,7 +604,7 @@ const FullCode = () => {
 
         <div className="flex flex-col gap-4 mt-5">
           {recentCode.map((item, id) => (
-            <NavLink to={`/full-code/${item._id}`} key={id}>
+            <NavLink to={`/full-code/${item.slug}`} key={id}>
               <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
                 <div className="flex justify-between items-center mb-3">
                   <h3 className="font-semibold text-lg text-gray-900">
