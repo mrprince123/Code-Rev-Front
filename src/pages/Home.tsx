@@ -7,6 +7,21 @@ const Home = () => {
       {/* Hero Section */}
       <section className="pt-8 lg:pt-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative text-center">
+          <div className="flex items-center justify-center mb-10">
+            <a
+              href="https://www.producthunt.com/posts/code-rev?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-code&#0045;rev"
+              target="_blank"
+            >
+              <img
+                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=927376&theme=light&t=1740827709983"
+                alt="Code&#0032;Rev&#0046; - Code&#0032;Rev&#0032;–&#0032;Streamline&#0032;Code&#0032;Reviews&#0032;with&#0032;AI&#0045;Powered&#0032;Peers | Product Hunt"
+                style={{ width: "250px", height: "54px" }}
+                width="250"
+                height="54"
+              />
+            </a>
+          </div>
+
           <div className="border border-black p-1 w-60 mx-auto rounded-full flex items-center justify-between mb-4">
             <span className="font-inter text-xs font-medium text-gray-900 ml-3">
               Discover seamless code Review.
