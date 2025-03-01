@@ -1,7 +1,12 @@
 import { baseUrl } from "../App";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { ListFilterPlus, SearchCheck, ThumbsUp } from "lucide-react";
+import {
+  Filter,
+  Plus,
+  SearchCheck,
+  ThumbsUp,
+} from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { javascript } from "@codemirror/lang-javascript";
 import { python } from "@codemirror/lang-python";
@@ -162,13 +167,16 @@ const YourCodes = () => {
         <div className="flex gap-2">
           <button
             onClick={toggleFiterOptions}
-            className="bg-black text-white font-medium p-2 rounded-lg text-sm"
+            className="bg-black text-white flex gap-2 items-center font-medium p-2 rounded-lg text-sm"
           >
-            <ListFilterPlus />
+            <Filter /> <p>Filter</p>
           </button>
-          <button className="bg-black text-white font-medium p-2 rounded-lg text-sm">
-            <NavLink to="/submit-code">Add Codes</NavLink>
-          </button>
+          <NavLink to="/submit-code">
+            <button className="bg-black text-white flex gap-2 items-center  font-medium p-2 rounded-lg text-sm">
+              <Plus />
+              <p>Add Codes</p>
+            </button>
+          </NavLink>
         </div>
 
         {/* Filter Options (Hidden by Default, Shown when showFilter is true) */}
