@@ -250,7 +250,7 @@ const Profile = () => {
                         (like) => like.userId === loggedInUserId
                       ) ? (
                         <svg
-                          className="w-6 h-6 text-purple-500 dark:text-white"
+                          className="w-6 h-6 text-purple-500"
                           aria-hidden="true"
                           xmlns="http://www.w3.org/2000/svg"
                           width="24"
@@ -323,15 +323,15 @@ const Profile = () => {
       {modelOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
           <div className="relative p-4 w-full max-w-xl">
-            <div className="relative bg-white rounded-lg p-4 shadow-sm dark:bg-gray-700">
-              <div className="flex items-center p-2 justify-between rounded-t dark:border-gray-600 border-gray-200">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="relative bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center p-2 justify-between rounded-t border-gray-200">
+                <h3 className="text-xl font-semibold text-gray-900">
                   Profile Delete Sure ?
                 </h3>
                 <button
                   onClick={handleDeleteToggle}
                   type="button"
-                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                 >
                   <svg
                     className="w-3 h-3"
@@ -353,22 +353,22 @@ const Profile = () => {
               </div>
 
               <div className="space-y-4 p-2">
-                <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                <p className="text-base leading-relaxed text-gray-500">
                   Are you sure you want to delete your profile? Please click on
                   yes if you want to delete. Otherwise, click no.
                 </p>
               </div>
 
-              <div className="flex items-center justify-end p-2 border-gray-200 rounded-b dark:border-gray-600">
+              <div className="flex items-center justify-end p-2 border-gray-200 rounded-b">
                 <button
                   onClick={deleteProfile}
-                  className="text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
                   Yes
                 </button>
                 <button
                   onClick={handleDeleteToggle}
-                  className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                  className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
                 >
                   No
                 </button>

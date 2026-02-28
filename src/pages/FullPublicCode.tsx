@@ -8,8 +8,6 @@ import {
   Share2,
   Pencil,
   Trash2,
-  MessageCircleCode,
-  Sparkle,
 } from "lucide-react";
 import { baseUrl } from "../App";
 import CodeMirror, { EditorState } from "@uiw/react-codemirror";
@@ -30,7 +28,8 @@ import { go } from "@codemirror/lang-go";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { RootState } from "../Redux/Store";
-import ReactMarkdown from "react-markdown";
+import AIReviewCard from "../components/AIReviewCard";
+import type { AIReviewResponse } from "../types/AIReview";
 
 interface Code {
   _id: string;
@@ -60,7 +59,7 @@ interface Code {
     email: string;
     profilePicture: string;
   };
-  aiResponse: string;
+  aiResponse: string | AIReviewResponse;
 }
 
 interface RecentCode {
@@ -105,7 +104,7 @@ const FullPublicCode = () => {
           comment,
           rating,
         },
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
       console.log("Response while Adding Comment ", response);
@@ -319,7 +318,7 @@ const FullPublicCode = () => {
       const response = await axios.put(
         url,
         { comment, rating },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       console.log("Response while deleting Comment ", response);
 
@@ -439,21 +438,12 @@ const FullPublicCode = () => {
         </div>
 
         {/* AI Reviews  */}
-        <div className="mt-8">
-          <div className="flex items-center gap-2 mb-5 text-purple-500">
-            <Sparkle />
-            <h1 className="text-xl font-medium">AI Reviews</h1>
-          </div>
-
-          <div className="flex gap-4 bg-gray-50 rounded-lg p-4 border ">
-            <div className="bg-gray-200 p-2 rounded-full max-h-max">
-              <MessageCircleCode />
-            </div>
-            <div className="px-2 overflow-hidden text-gray-600">
-              <ReactMarkdown>{codeDetails.aiResponse}</ReactMarkdown>
-            </div>
-          </div>
-        </div>
+        <AIReviewCard
+          aiResponse={codeDetails.aiResponse}
+          slug={codeDetails.slug}
+          onReviewUpdated={fetchFullCode}
+          isAuthor={codeDetails.authorId._id === loggedInUserId}
+        />
 
         <div className="flex justify-end mt-5">
           <button
@@ -612,15 +602,15 @@ const FullPublicCode = () => {
       {modelOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
           <div className="relative p-4 w-full max-w-xl">
-            <div className="relative bg-white rounded-lg p-4 shadow-sm dark:bg-gray-700">
-              <div className="flex items-center p-2 justify-between rounded-t dark:border-gray-600 border-gray-200">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="relative bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center p-2 justify-between rounded-t border-gray-200">
+                <h3 className="text-xl font-semibold text-gray-900">
                   Update You Comment
                 </h3>
                 <button
                   onClick={handleToggleModel}
                   type="button"
-                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                 >
                   <svg
                     className="w-3 h-3"
@@ -680,16 +670,16 @@ const FullPublicCode = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end p-2 border-gray-200 rounded-b dark:border-gray-600">
+              <div className="flex items-center justify-end p-2 border-gray-200 rounded-b">
                 <button
                   onClick={updateComment}
-                  className="text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
                   Update
                 </button>
                 <button
                   onClick={handleToggleModel}
-                  className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                  className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
                 >
                   Cancel
                 </button>
