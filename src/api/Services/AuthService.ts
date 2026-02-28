@@ -1,6 +1,6 @@
 
-
 export const authService = {
-    login: async (username: string, password: string) => {
-    
-}
+    login: async (_username: string, _password: string) => {
+
+    },
+};

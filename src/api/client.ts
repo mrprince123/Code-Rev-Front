@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { InternalAxiosRequestConfig } from 'axios';
 const PROD_URL = 'https://api.example.com';
 const DEV_URL = 'http://localhost:5000';
 
@@ -21,14 +21,14 @@ const client = axios.create({
 });
 
 
-client.interceptors.request.use((config : string) => {
+client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     const token = localStorage.getItem('authToken');
     if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
     }
 
     return config;
-}, (error : string) => {
+}, (error: any) => {
     return Promise.reject(error);
 });
 
