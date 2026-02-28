@@ -9,8 +9,6 @@ import {
   Calendar,
   Pencil,
   Trash2,
-  MessageCircleCode,
-  Sparkle,
 } from "lucide-react";
 import { baseUrl } from "../App";
 import CodeMirror, { EditorState } from "@uiw/react-codemirror";
@@ -31,7 +29,8 @@ import { go } from "@codemirror/lang-go";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { RootState } from "../Redux/Store";
-import ReactMarkdown from "react-markdown";
+import AIReviewCard from "../components/AIReviewCard";
+import type { AIReviewResponse } from "../types/AIReview";
 
 interface Code {
   _id: string;
@@ -60,7 +59,7 @@ interface Code {
     email: string;
     profilePicture: string;
   };
-  aiResponse: string;
+  aiResponse: string | AIReviewResponse;
 }
 
 interface RecentCode {
@@ -109,7 +108,7 @@ const FullCode = () => {
           comment,
           rating,
         },
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
       console.log("Response while Adding Comment ", response);
@@ -321,7 +320,7 @@ const FullCode = () => {
       const response = await axios.put(
         url,
         { comment, rating },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       console.log("Response while deleting Comment ", response);
 
@@ -435,21 +434,12 @@ const FullCode = () => {
         </div>
 
         {/* AI Reviews  */}
-        <div className="mt-8">
-          <div className="flex items-center gap-2 mb-5 text-purple-500">
-            <Sparkle />
-            <h1 className="text-xl font-medium">AI Reviews</h1>
-          </div>
-
-          <div className="flex gap-4 bg-gray-50 rounded-lg p-4 border ">
-            <div className="bg-gray-200 p-2 rounded-full max-h-max">
-              <MessageCircleCode />
-            </div>
-            <div className="px-2 overflow-hidden text-gray-600">
-              <ReactMarkdown>{codeDetails.aiResponse}</ReactMarkdown>
-            </div>
-          </div>
-        </div>
+        <AIReviewCard
+          aiResponse={codeDetails.aiResponse}
+          slug={slug || ""}
+          onReviewUpdated={fetchFullCode}
+          isAuthor={codeDetails.authorId._id === loggedInUserId}
+        />
 
         <div className="flex justify-end mt-5">
           <button
