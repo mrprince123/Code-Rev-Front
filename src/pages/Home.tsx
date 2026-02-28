@@ -1,7 +1,13 @@
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../Redux/Store";
 import FullCodePic from "../assets/fullCodePic.png";
 
 const Home = () => {
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.auth.isAuthenticated,
+  );
+
   return (
     <div>
       {/* Hero Section */}
@@ -55,28 +61,30 @@ const Home = () => {
             Improve your code quality with AI-powered and peer reviews. Share,
             collaborate, and enhance your coding skills effortlessly.
           </p>
-          <NavLink
-            to="/register"
-            className="w-full md:w-auto mb-14 inline-flex items-center justify-center py-3 px-7 text-base font-semibold text-center text-white rounded-full bg-black shadow-xs hover:bg-gray-700 transition-all duration-500"
-          >
-            Create an Account
-            <svg
-              className="ml-2"
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+          {!isAuthenticated && (
+            <NavLink
+              to="/register"
+              className="w-full md:w-auto mb-14 inline-flex items-center justify-center py-3 px-7 text-base font-semibold text-center text-white rounded-full bg-black shadow-xs hover:bg-gray-700 transition-all duration-500"
             >
-              <path
-                d="M7.5 15L11.0858 11.4142C11.7525 10.7475 12.0858 10.4142 12.0858 10C12.0858 9.58579 11.7525 9.25245 11.0858 8.58579L7.5 5"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </NavLink>
+              Create an Account
+              <svg
+                className="ml-2"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.5 15L11.0858 11.4142C11.7525 10.7475 12.0858 10.4142 12.0858 10C12.0858 9.58579 11.7525 9.25245 11.0858 8.58579L7.5 5"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </NavLink>
+          )}
           <div className="flex justify-center">
             <img
               src={FullCodePic}

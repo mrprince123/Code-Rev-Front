@@ -103,12 +103,12 @@ const UserUpdate = () => {
       {/* Profile Update Section */}
       <section className="bg-white rounded-lg w-full sm:w-2/3 max-h-max">
         <div className="max-w-4xl p-2 mx-auto">
-          <div className="bg-white rounded-xl p-4 sm:p-7 dark:bg-neutral-800">
+          <div className="bg-white rounded-xl p-4 sm:p-7">
             <div className="mb-8">
-              <h2 className="text-2xl mb-2 font-bold text-gray-800 dark:text-neutral-200">
+              <h2 className="text-2xl mb-2 font-bold text-gray-800">
                 Profile
               </h2>
-              <p className="text-sm text-gray-600 dark:text-neutral-400">
+              <p className="text-sm text-gray-600">
                 Manage your name, password and account settings.
               </p>
             </div>
@@ -117,14 +117,14 @@ const UserUpdate = () => {
               <div className="grid sm:grid-cols-12 gap-2 sm:gap-6">
                 {/* Profile Photo */}
                 <div className="sm:col-span-3">
-                  <label className="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200">
+                  <label className="inline-block text-sm text-gray-800 mt-2.5">
                     Profile photo
                   </label>
                 </div>
                 <div className="sm:col-span-9">
                   <div className="flex items-center gap-5">
                     <img
-                      className="inline-block size-16 object-cover rounded-full ring-2 ring-white dark:ring-neutral-900"
+                      className="inline-block size-16 object-cover rounded-full ring-2 ring-white"
                       src={profilePicturePreview || `${profilePicture}`}
                       alt="User Profile Image"
                     />
@@ -133,7 +133,7 @@ const UserUpdate = () => {
                         id="af-account-email"
                         type="file"
                         onChange={handleFileChange}
-                        className="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm text-sm rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                        className="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm text-sm rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none"
                         placeholder="profilepic/url"
                         accept="image/*"
                       />
@@ -145,7 +145,7 @@ const UserUpdate = () => {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="af-account-email"
-                    className="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                    className="inline-block text-sm text-gray-800 mt-2.5"
                   >
                     Full Name
                   </label>
@@ -156,7 +156,7 @@ const UserUpdate = () => {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm text-sm rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    className="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm text-sm rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none"
                     placeholder="John Paul"
                   />
                 </div>
@@ -165,7 +165,7 @@ const UserUpdate = () => {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="af-account-email"
-                    className="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                    className="inline-block text-sm text-gray-800 mt-2.5"
                   >
                     Email
                   </label>
@@ -176,7 +176,7 @@ const UserUpdate = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm text-sm rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    className="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm text-sm rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none"
                     placeholder="maria@site.com"
                   />
                 </div>
@@ -185,7 +185,7 @@ const UserUpdate = () => {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="af-account-email"
-                    className="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                    className="inline-block text-sm text-gray-800 mt-2.5"
                   >
                     Role
                   </label>
@@ -196,7 +196,7 @@ const UserUpdate = () => {
                     type="text"
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
-                    className="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm text-sm rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    className="py-2 px-3 pe-11 block w-full border border-gray-200 shadow-sm text-sm rounded-lg focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none"
                     placeholder="Marketing Head"
                   />
                 </div>
@@ -205,7 +205,7 @@ const UserUpdate = () => {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="af-account-gender-checkbox"
-                    className="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                    className="inline-block text-sm text-gray-800 mt-2.5"
                   >
                     Gender
                   </label>
@@ -214,54 +214,54 @@ const UserUpdate = () => {
                   <div className="sm:flex">
                     <label
                       htmlFor="gender-male"
-                      className="flex py-2 px-3 w-full border border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      className="flex py-2 px-3 w-full border border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none"
                     >
                       <input
                         type="radio"
                         name="gender"
                         value="male"
                         onChange={(e) => setGender(e.target.value)}
-                        className="shrink-0 mt-0.5 border-gray-300 rounded-full text-gray-600 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-500 dark:checked:bg-gray-500 dark:checked:border-gray-500 dark:focus:ring-offset-gray-800"
+                        className="shrink-0 mt-0.5 border-gray-300 rounded-full text-gray-600 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none"
                         id="gender-male"
                         checked={gender === "male"}
                       />
-                      <span className="text-sm text-gray-500 ms-3 dark:text-neutral-400">
+                      <span className="text-sm text-gray-500 ms-3">
                         Male
                       </span>
                     </label>
 
                     <label
                       htmlFor="gender-female"
-                      className="flex py-2 px-3 w-full border border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      className="flex py-2 px-3 w-full border border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none"
                     >
                       <input
                         type="radio"
                         name="gender"
                         value="female"
                         onChange={(e) => setGender(e.target.value)}
-                        className="shrink-0 mt-0.5 border-gray-300 rounded-full text-gray-600 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-500 dark:checked:bg-gray-500 dark:checked:border-gray-500 dark:focus:ring-offset-gray-800"
+                        className="shrink-0 mt-0.5 border-gray-300 rounded-full text-gray-600 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none"
                         id="gender-female"
                         checked={gender === "female"}
                       />
-                      <span className="text-sm text-gray-500 ms-3 dark:text-neutral-400">
+                      <span className="text-sm text-gray-500 ms-3">
                         Female
                       </span>
                     </label>
 
                     <label
                       htmlFor="gender-other"
-                      className="flex py-2 px-3 w-full border border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                      className="flex py-2 px-3 w-full border border-gray-200 shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none"
                     >
                       <input
                         type="radio"
                         name="gender"
                         value="other"
                         onChange={(e) => setGender(e.target.value)}
-                        className="shrink-0 mt-0.5 border-gray-300 rounded-full text-gray-600 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-500 dark:checked:bg-gray-500 dark:checked:border-gray-500 dark:focus:ring-offset-gray-800"
+                        className="shrink-0 mt-0.5 border-gray-300 rounded-full text-gray-600 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none"
                         id="gender-other"
                         checked={gender === "other"}
                       />
-                      <span className="text-sm text-gray-500 ms-3 dark:text-neutral-400">
+                      <span className="text-sm text-gray-500 ms-3">
                         Other
                       </span>
                     </label>
@@ -272,7 +272,7 @@ const UserUpdate = () => {
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="af-account-bio"
-                    className="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200"
+                    className="inline-block text-sm text-gray-800 mt-2.5"
                   >
                     BIO
                   </label>
@@ -280,7 +280,7 @@ const UserUpdate = () => {
                 <div className="sm:col-span-9">
                   <textarea
                     id="af-account-bio"
-                    className="py-2 px-3 block w-full border border-gray-200 rounded-lg text-sm focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                    className="py-2 px-3 block w-full border border-gray-200 rounded-lg text-sm focus:border-gray-500 focus:ring-gray-500 disabled:opacity-50 disabled:pointer-events-none"
                     rows={8}
                     value={about}
                     onChange={(e) => setAbout(e.target.value)}
@@ -294,7 +294,7 @@ const UserUpdate = () => {
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50 dark:bg-transparent dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+                  className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-50"
                 >
                   Cancel
                 </button>
@@ -311,77 +311,77 @@ const UserUpdate = () => {
       </section>
 
       {/* Profile Update Guideline Section */}
-      <div className="w-full sm:w-1/3 p-6 shadow-sm rounded-lg bg-white dark:bg-gray-800 max-h-max">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+      <div className="w-full sm:w-1/3 p-6 shadow-sm rounded-lg bg-white max-h-max">
+        <h2 className="text-2xl font-bold text-gray-800">
           Profile Information Guidelines
         </h2>
 
         <div className="flex flex-col gap-4 mt-5">
           {/* Profile Picture */}
-          <div className="border border-gray-200 dark:border-gray-600 p-5 rounded-lg bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-shadow duration-200">
+          <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
             <div className="flex items-center gap-2 mb-2">
-              <Camera className="text-purple-600 dark:text-purple-400" />
-              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+              <Camera className="text-purple-600" />
+              <h3 className="text-lg font-semibold text-gray-700">
                 Profile Picture
               </h3>
             </div>
-            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-600 text-sm leading-relaxed">
               Upload a clear, recognizable photo of yourself. Recommended size:
               500x500px. Supported formats: JPG, PNG.
             </p>
           </div>
 
           {/* Profile Bio */}
-          <div className="border border-gray-200 dark:border-gray-600 p-5 rounded-lg bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-shadow duration-200">
+          <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
             <div className="flex items-center gap-2 mb-2">
-              <User className="text-purple-600 dark:text-purple-400" />
-              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+              <User className="text-purple-600" />
+              <h3 className="text-lg font-semibold text-gray-700">
                 Profile Bio
               </h3>
             </div>
-            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-600 text-sm leading-relaxed">
               Write a concise bio (max 150 characters) highlighting your
               expertise, interests, or current focus in development.
             </p>
           </div>
 
           {/* Email */}
-          <div className="border border-gray-200 dark:border-gray-600 p-5 rounded-lg bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-shadow duration-200">
+          <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
             <div className="flex items-center gap-2 mb-2">
-              <Mail className="text-purple-600 dark:text-purple-400" />
-              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+              <Mail className="text-purple-600" />
+              <h3 className="text-lg font-semibold text-gray-700">
                 Email Address
               </h3>
             </div>
-            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-600 text-sm leading-relaxed">
               Maintain an active, verified email for account security and
               notifications. We never share your email publicly.
             </p>
           </div>
 
           {/* Role */}
-          <div className="border border-gray-200 dark:border-gray-600 p-5 rounded-lg bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-shadow duration-200">
+          <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
             <div className="flex items-center gap-2 mb-2">
-              <Briefcase className="text-purple-600 dark:text-purple-400" />
-              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+              <Briefcase className="text-purple-600" />
+              <h3 className="text-lg font-semibold text-gray-700">
                 Development Role
               </h3>
             </div>
-            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-600 text-sm leading-relaxed">
               Select your primary role (e.g., Frontend Developer, Student, Tech
               Lead) to help personalize your experience.
             </p>
           </div>
 
           {/* Gender */}
-          <div className="border border-gray-200 dark:border-gray-600 p-5 rounded-lg bg-gray-50 dark:bg-gray-700 hover:shadow-md transition-shadow duration-200">
+          <div className="border border-gray-200 p-5 rounded-lg bg-gray-50 hover:shadow-md transition-shadow duration-200">
             <div className="flex items-center gap-2 mb-2">
-              <Heart className="text-purple-600 dark:text-purple-400" />
-              <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+              <Heart className="text-purple-600" />
+              <h3 className="text-lg font-semibold text-gray-700">
                 Gender Identity
               </h3>
             </div>
-            <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-600 text-sm leading-relaxed">
               Optional field to help us create an inclusive community. Select
               "Prefer not to say" if you'd rather not share.
             </p>

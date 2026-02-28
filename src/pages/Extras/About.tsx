@@ -16,15 +16,15 @@ const About = () => {
   };
 
   return (
-    <div className="dark:bg-gray-900 min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="py-14 lg:py-24 relative z-0  dark:bg-gray-800">
+      <section className="py-14 lg:py-24 relative z-0 ">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative text-center">
-          <h1 className="max-w-2xl mx-auto text-center font-manrope font-bold text-4xl text-gray-900 dark:text-white mb-5 md:text-5xl md:leading-normal">
+          <h1 className="max-w-2xl mx-auto text-center font-manrope font-bold text-4xl text-gray-900 mb-5 md:text-5xl md:leading-normal">
             Elevate Your Code Quality with{" "}
             <span className="text-indigo-600">Code Rev</span>
           </h1>
-          <p className="max-w-sm mx-auto text-center text-base font-normal leading-7 text-gray-700 dark:text-gray-400 mb-9">
+          <p className="max-w-sm mx-auto text-center text-base font-normal leading-7 text-gray-700 mb-9">
             Code Rev empowers developers to write cleaner, more efficient, and
             maintainable code through AI-powered analysis and expert feedback.
           </p>
@@ -46,10 +46,10 @@ const About = () => {
             </div>
             <div className="lg:pl-[100px] flex items-center">
               <div className="data w-full">
-                <h2 className="font-manrope font-bold text-4xl lg:text-5xl text-black dark:text-white mb-9 max-lg:text-center relative">
+                <h2 className="font-manrope font-bold text-4xl lg:text-5xl text-black mb-9 max-lg:text-center relative">
                   About Code Rev
                 </h2>
-                <p className="font-normal text-lg leading-8 text-gray-700 dark:text-gray-400 max-lg:text-center max-w-2xl mx-auto">
+                <p className="font-normal text-lg leading-8 text-gray-700 max-lg:text-center max-w-2xl mx-auto">
                   At Code Rev, we believe that great code is the foundation of
                   every successful project. Our platform combines cutting-edge
                   AI technology with expert human reviews to help developers
@@ -64,7 +64,7 @@ const About = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="py-14 lg:py-24 relative  dark:bg-gray-800">
+      <section className="py-14 lg:py-24 relative ">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-9">
             <div className="lg:pr-24 flex items-center">
@@ -74,10 +74,10 @@ const About = () => {
                   alt="Code Rev Mission"
                   className="block lg:hidden mb-9 mx-auto object-cover rounded-lg"
                 />
-                <h2 className="font-manrope font-bold text-4xl lg:text-5xl text-black dark:text-white mb-9 max-lg:text-center">
+                <h2 className="font-manrope font-bold text-4xl lg:text-5xl text-black mb-9 max-lg:text-center">
                   Our Mission
                 </h2>
-                <p className="font-normal text-lg leading-8 text-gray-700 dark:text-gray-400 max-lg:text-center max-w-2xl mx-auto">
+                <p className="font-normal text-lg leading-8 text-gray-700 max-lg:text-center max-w-2xl mx-auto">
                   Our mission is to make high-quality code accessible to
                   everyone. We aim to bridge the gap between developers and best
                   practices by providing actionable feedback, educational
@@ -99,54 +99,54 @@ const About = () => {
       </section>
 
       {/* Results in Numbers Section */}
-      <section className="py-20  dark:bg-gray-900">
+      <section className="py-20 ">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="font-manrope text-4xl text-center text-gray-900 dark:text-white font-bold mb-14">
+          <h2 className="font-manrope text-4xl text-center text-gray-900 font-bold mb-14">
             Our Impact in Numbers
           </h2>
           <div className="flex flex-col gap-5 xl:gap-8 lg:flex-row lg:justify-between">
-            <div className="w-full max-lg:max-w-2xl mx-auto lg:mx-0 lg:w-1/3 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md shadow-gray-100 dark:shadow-gray-700">
+            <div className="w-full max-lg:max-w-2xl mx-auto lg:mx-0 lg:w-1/3 bg-white p-6 rounded-2xl shadow-md shadow-gray-100">
               <div className="flex gap-5">
                 <div className="font-manrope text-2xl font-bold text-indigo-600">
                   10,000+
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-xl text-gray-900 dark:text-white font-semibold mb-2">
+                  <h4 className="text-xl text-gray-900 font-semibold mb-2">
                     Code Reviews
                   </h4>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 leading-5">
+                  <p className="text-xs text-gray-500 leading-5">
                     We've conducted over 10,000 code reviews, helping developers
                     improve their skills and projects.
                   </p>
                 </div>
               </div>
             </div>
-            <div className="w-full max-lg:max-w-2xl mx-auto lg:mx-0 lg:w-1/3 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md shadow-gray-100 dark:shadow-gray-700">
+            <div className="w-full max-lg:max-w-2xl mx-auto lg:mx-0 lg:w-1/3 bg-white p-6 rounded-2xl shadow-md shadow-gray-100">
               <div className="flex gap-5">
                 <div className="font-manrope text-2xl font-bold text-indigo-600">
                   95%
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-xl text-gray-900 dark:text-white font-semibold mb-2">
+                  <h4 className="text-xl text-gray-900 font-semibold mb-2">
                     Satisfaction Rate
                   </h4>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 leading-5">
+                  <p className="text-xs text-gray-500 leading-5">
                     Our users report a 95% satisfaction rate with the feedback
                     and improvements they receive.
                   </p>
                 </div>
               </div>
             </div>
-            <div className="w-full max-lg:max-w-2xl mx-auto lg:mx-0 lg:w-1/3 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md shadow-gray-100 dark:shadow-gray-700">
+            <div className="w-full max-lg:max-w-2xl mx-auto lg:mx-0 lg:w-1/3 bg-white p-6 rounded-2xl shadow-md shadow-gray-100">
               <div className="flex gap-5">
                 <div className="font-manrope text-2xl font-bold text-indigo-600">
                   500+
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-xl text-gray-900 dark:text-white font-semibold mb-2">
+                  <h4 className="text-xl text-gray-900 font-semibold mb-2">
                     Active Developers
                   </h4>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 leading-5">
+                  <p className="text-xs text-gray-500 leading-5">
                     Join a growing community of 500+ developers who trust Code
                     Rev for their coding needs.
                   </p>
@@ -158,7 +158,7 @@ const About = () => {
       </section>
 
       {/* Subscribe Section */}
-      <section className="py-20  dark:bg-gray-800">
+      <section className="py-20 ">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="bg-indigo-600 rounded-2xl p-8 xl:p-11">
             <h2 className="font-manrope text-4xl text-white text-center font-bold mb-4">

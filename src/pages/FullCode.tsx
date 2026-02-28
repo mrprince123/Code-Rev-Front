@@ -628,15 +628,15 @@ const FullCode = () => {
       {modelOpenCode && (
         <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
           <div className="relative p-4 w-full max-w-xl">
-            <div className="relative bg-white rounded-lg p-4 shadow-sm dark:bg-gray-700">
-              <div className="flex items-center p-2 justify-between  rounded-t dark:border-gray-600 border-gray-200">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="relative bg-white rounded-lg p-4 shadow-sm ">
+              <div className="flex items-center p-2 justify-between  rounded-t border-gray-200">
+                <h3 className="text-xl font-semibold text-gray-900 ">
                   Are you absolutely sure?
                 </h3>
                 <button
                   onClick={handleDeleteToggle}
                   type="button"
-                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center "
                 >
                   <svg
                     className="w-3 h-3"
@@ -658,22 +658,22 @@ const FullCode = () => {
               </div>
 
               <div className=" space-y-4 p-2">
-                <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                <p className="text-base leading-relaxed text-gray-500 ">
                   This action cannot be undone. This will permanently delete
                   your code and remove your code data from our servers.
                 </p>
               </div>
 
-              <div className="flex items-center  justify-end  p-2 border-gray-200 rounded-b dark:border-gray-600">
+              <div className="flex items-center  justify-end  p-2 border-gray-200 rounded-b ">
                 <button
                   onClick={handleDelete}
-                  className="text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                 >
                   Yes
                 </button>
                 <button
                   onClick={handleDeleteToggle}
-                  className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                  className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 "
                 >
                   No
                 </button>
@@ -687,15 +687,15 @@ const FullCode = () => {
       {modelOpenComment && (
         <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
           <div className="relative p-4 w-full max-w-xl">
-            <div className="relative bg-white rounded-lg p-4 shadow-sm dark:bg-gray-700">
-              <div className="flex items-center p-2 justify-between rounded-t dark:border-gray-600 border-gray-200">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+            <div className="relative bg-white rounded-lg p-4 shadow-sm ">
+              <div className="flex items-center p-2 justify-between rounded-t border-gray-200">
+                <h3 className="text-xl font-semibold text-gray-900 ">
                   Update You Comment
                 </h3>
                 <button
                   onClick={handleCommentUpdateToggle}
                   type="button"
-                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center "
                 >
                   <svg
                     className="w-3 h-3"
@@ -755,16 +755,16 @@ const FullCode = () => {
                 </div>
               </div>
 
-              <div className="flex items-center justify-end p-2 border-gray-200 rounded-b dark:border-gray-600">
+              <div className="flex items-center justify-end p-2 border-gray-200 rounded-b ">
                 <button
                   onClick={updateComment}
-                  className="text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                 >
                   Update
                 </button>
                 <button
                   onClick={handleCommentUpdateToggle}
-                  className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                  className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 "
                 >
                   Cancel
                 </button>
