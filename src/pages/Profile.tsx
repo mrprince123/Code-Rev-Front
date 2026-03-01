@@ -70,11 +70,8 @@ const Profile = () => {
     try {
       const url = `${baseUrl}/code/all`;
       const response = await axios.get(url, { withCredentials: true });
-      console.log("Response ", response);
       setCodes(response.data.data);
-    } catch (error) {
-      console.log("Error while Fetching all the codes  of User ", error);
-    }
+    } catch (error) {}
   };
 
   // Get all the Reviews by this user
@@ -82,11 +79,8 @@ const Profile = () => {
     try {
       const url = `${baseUrl}/review/all/`;
       const response = await axios.get(url, { withCredentials: true });
-      console.log("Code Reviews ", response);
       setReviews(response.data.data);
-    } catch (error: any) {
-      console.log("Error while getting all review ", error);
-    }
+    } catch (error: any) {}
   };
 
   useEffect(() => {
@@ -98,11 +92,10 @@ const Profile = () => {
   const deleteProfile = async () => {
     try {
       const url = `${baseUrl}/user/delete`;
-      const response = await axios.delete(url, { withCredentials: true });
+      await axios.delete(url, { withCredentials: true });
       dispatch(logout()); // Logout out User when the Profile is deleted
-      console.log("Response ", response);
     } catch (error) {
-      console.log("Error while Deleting User Profile", error);
+      // Error while deleting user profile
     }
   };
 
@@ -247,7 +240,7 @@ const Profile = () => {
                     <div className="flex items-center gap-2">
                       {" "}
                       {item.likes.some(
-                        (like) => like.userId === loggedInUserId
+                        (like) => like.userId === loggedInUserId,
                       ) ? (
                         <svg
                           className="w-6 h-6 text-purple-500"

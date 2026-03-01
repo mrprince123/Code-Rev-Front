@@ -17,16 +17,14 @@ const Contact = () => {
       const response = await axios.post(
         url,
         { purpose, message },
-        { withCredentials: true }
+        { withCredentials: true },
       );
-      console.log("Response while Feedback", response);
       toast.success(response.data.message);
 
       // Clear the form after successful submission
       setPurpose("");
       setMessage("");
     } catch (error: any) {
-      console.log("Error while Sending Feedback", error);
       toast.error(error.response.data.message);
     }
   };

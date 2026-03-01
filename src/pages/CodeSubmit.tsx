@@ -82,14 +82,12 @@ const CodeSubmit = () => {
       const response = await axios.post(
         url,
         { title, description, tags, language, visibility, code },
-        { withCredentials: true }
+        { withCredentials: true },
       );
 
-      console.log("Response while Added new code ", response);
       toast.success(response.data.message);
       navigate("/your-code");
     } catch (error: any) {
-      console.log("Error while Submitting the Code ", error);
       toast.error(error.response.data.message);
     } finally {
       setSubmit(false);

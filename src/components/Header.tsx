@@ -24,13 +24,11 @@ const Header = () => {
     try {
       const url = `${baseUrl}/auth/logout`;
       const response = await axios.get(url, { withCredentials: true });
-      console.log("Reponse while logout ", response);
       navigate("/");
       toast.success(response.data.message);
       dispatch(logout());
     } catch (error: any) {
       toast.error(error.response.data.message);
-      console.log("Error while logout ", error);
     }
   };
 

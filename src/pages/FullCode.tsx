@@ -111,7 +111,6 @@ const FullCode = () => {
         { withCredentials: true },
       );
 
-      console.log("Response while Adding Comment ", response);
       toast.success(response.data.message);
       // Refresh the code details to show the updated comment
       fetchFullCode();
@@ -119,7 +118,6 @@ const FullCode = () => {
       setComments(""); // Clear the comment field
       setRating(""); // Clear the rating field
     } catch (error: any) {
-      console.log("Error while Added Comment ", error);
       toast.error(error.response.data.message);
     }
   };
@@ -131,7 +129,6 @@ const FullCode = () => {
         withCredentials: true,
       });
       setCodeDetails(response.data.data);
-      console.log("Full Code Details ", response);
     } catch (error) {
       console.error("Error fetching full code details:", error);
     }
@@ -144,9 +141,7 @@ const FullCode = () => {
       const url = `${baseUrl}/code/all/?limit=${limit}`;
       const response = await axios.get(url, { withCredentials: true });
       setRecentCode(response.data.data);
-    } catch (error) {
-      console.log("Error while fetching codes:", error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -298,12 +293,9 @@ const FullCode = () => {
     try {
       const url = `${baseUrl}/review/delete/${id}`;
       const response = await axios.delete(url, { withCredentials: true });
-      console.log("Response while deleting Comment ", response);
       toast.success(response.data.message);
       fetchFullCode();
-    } catch (error) {
-      console.log("Error while deleting the Comment ", error);
-    }
+    } catch (error) {}
   };
 
   // Comment Update
@@ -322,7 +314,6 @@ const FullCode = () => {
         { comment, rating },
         { withCredentials: true },
       );
-      console.log("Response while deleting Comment ", response);
 
       // Refresh the code details to show the updated comment
       fetchFullCode();
@@ -331,7 +322,6 @@ const FullCode = () => {
       setRating(""); // Clear the rating field
       toast.success(response.data.message);
     } catch (error: any) {
-      console.log("Error while deleting the Comment ", error);
       toast.error(error.response.data.message);
     }
   };

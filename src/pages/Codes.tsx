@@ -60,12 +60,10 @@ const Codes = () => {
     try {
       const url = `${baseUrl}/code/all/public?page=${page}&limit=${limit}`;
       const response = await axios.get(url, { withCredentials: true });
-      console.log("Response of all Codes ", response);
       setCodes(response.data.data);
       setFilterCodes(response.data.data);
       setTotalPages(response.data.totalPages);
     } catch (error) {
-      console.log("Error while fetching codes:", error);
     } finally {
       setLoading(false);
     }
@@ -115,11 +113,9 @@ const Codes = () => {
     try {
       const url = `${baseUrl}/like/add/${id}`;
       const response = await axios.post(url, {}, { withCredentials: true });
-      console.log("Response while Liking ", response);
       toast.success(response.data.message);
       getAllPublicCodes(currentPage);
     } catch (error: any) {
-      console.log("Error while Liking codes:", error);
       toast.error(error.response.data.message);
     }
   };
@@ -147,9 +143,7 @@ const Codes = () => {
         return matchesLanguage && matchesTag;
       });
       setFilterCodes(filterCodes);
-    } catch (error) {
-      console.log("Error while filtering codes : ", error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -332,7 +326,7 @@ const Codes = () => {
                     className="flex items-center gap-2"
                   >
                     {item.likes.some(
-                      (like) => like.userId === loggedInUserId
+                      (like) => like.userId === loggedInUserId,
                     ) ? (
                       <ThumbsUp size={18} className="text-purple-600" />
                     ) : (

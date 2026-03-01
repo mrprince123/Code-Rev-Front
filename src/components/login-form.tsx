@@ -22,12 +22,10 @@ export function LoginForm() {
       const response = await axios.post(
         url,
         { email, password },
-        { withCredentials: true }
+        { withCredentials: true },
       );
-      console.log("Response ", response);
-      console.log(response.data.message);
       dispatch(
-        login({ user: response.data.data, token: response.data.accessToken })
+        login({ user: response.data.data, token: response.data.accessToken }),
       );
       toast.success(response.data.message);
       navigate(from, { replace: true });
@@ -45,14 +43,13 @@ export function LoginForm() {
       const response = await axios.post(
         url,
         { token },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       dispatch(
-        login({ user: response.data.data, token: response.data.accessToken })
+        login({ user: response.data.data, token: response.data.accessToken }),
       );
       toast.success(response.data.message);
       navigate(from, { replace: true });
-      console.log("Res while google login", response);
     } catch (error: any) {
       toast.error(error.response.data.message);
       console.error("Login failed", error);
@@ -60,7 +57,6 @@ export function LoginForm() {
   };
 
   const handleGoogleLoginError = () => {
-    console.log("Google Login Failed");
     toast.error("Google Login Failed. Please try again.");
   };
 
