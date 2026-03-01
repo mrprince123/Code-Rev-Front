@@ -72,7 +72,7 @@ const CodeUpdate = () => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => {
     const { id, value } = e.target;
     setCodeData((prevData) => ({ ...prevData, [id]: value }));
@@ -88,11 +88,9 @@ const CodeUpdate = () => {
       const response = await axios.put(url, codeData, {
         withCredentials: true,
       });
-      console.log("Response while Update code ", response);
       toast.success(response.data.message);
       navigate("/your-code");
     } catch (error: any) {
-      console.log("Error while Submitting the Code ", error);
       toast.error(error.response.data.message);
     } finally {
       setSubmit(false);

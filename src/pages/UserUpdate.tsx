@@ -5,13 +5,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { profileUpdate } from "../Redux/AuthSlice";
 import toast, { Toaster } from "react-hot-toast";
-import {
-  Briefcase,
-  Camera,
-  Heart,
-  Mail,
-  User,
-} from "lucide-react";
+import { Briefcase, Camera, Heart, Mail, User } from "lucide-react";
 
 const UserUpdate = () => {
   const dispatch = useDispatch();
@@ -44,12 +38,6 @@ const UserUpdate = () => {
       setRole(response.data.data.role);
       setAbout(response.data.data.about);
       setGender(response.data.data.gender);
-
-      console.log("Profile Data ", response);
-      try {
-      } catch (error) {
-        console.log("Error while Getting Profile Details ", error);
-      }
     };
 
     getProfileDetails();
@@ -89,11 +77,9 @@ const UserUpdate = () => {
       // Dispatch profile update to Redux store
       dispatch(profileUpdate({ user: response.data.data }));
 
-      console.log("Response while Updating ", response);
       toast.success(response.data.message);
       navigate("/profile");
     } catch (error: any) {
-      console.log("Error while Profile Update ", error);
       toast.error(error.response.data.message);
     }
   };
@@ -105,9 +91,7 @@ const UserUpdate = () => {
         <div className="max-w-4xl p-2 mx-auto">
           <div className="bg-white rounded-xl p-4 sm:p-7">
             <div className="mb-8">
-              <h2 className="text-2xl mb-2 font-bold text-gray-800">
-                Profile
-              </h2>
+              <h2 className="text-2xl mb-2 font-bold text-gray-800">Profile</h2>
               <p className="text-sm text-gray-600">
                 Manage your name, password and account settings.
               </p>
@@ -225,9 +209,7 @@ const UserUpdate = () => {
                         id="gender-male"
                         checked={gender === "male"}
                       />
-                      <span className="text-sm text-gray-500 ms-3">
-                        Male
-                      </span>
+                      <span className="text-sm text-gray-500 ms-3">Male</span>
                     </label>
 
                     <label
@@ -243,9 +225,7 @@ const UserUpdate = () => {
                         id="gender-female"
                         checked={gender === "female"}
                       />
-                      <span className="text-sm text-gray-500 ms-3">
-                        Female
-                      </span>
+                      <span className="text-sm text-gray-500 ms-3">Female</span>
                     </label>
 
                     <label
@@ -261,9 +241,7 @@ const UserUpdate = () => {
                         id="gender-other"
                         checked={gender === "other"}
                       />
-                      <span className="text-sm text-gray-500 ms-3">
-                        Other
-                      </span>
+                      <span className="text-sm text-gray-500 ms-3">Other</span>
                     </label>
                   </div>
                 </div>

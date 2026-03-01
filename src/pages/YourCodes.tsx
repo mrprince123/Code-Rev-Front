@@ -1,12 +1,7 @@
 import { baseUrl } from "../App";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {
-  Filter,
-  Plus,
-  SearchCheck,
-  ThumbsUp,
-} from "lucide-react";
+import { Filter, Plus, SearchCheck, ThumbsUp } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { javascript } from "@codemirror/lang-javascript";
 import { python } from "@codemirror/lang-python";
@@ -65,11 +60,9 @@ const YourCodes = () => {
     try {
       const url = `${baseUrl}/code/all?page=${page}&limit=${limit}`;
       const response = await axios.get(url, { withCredentials: true });
-      console.log("Response ", response);
       setCodes(response.data.data);
       setTotalPages(response.data.totalPages);
     } catch (error) {
-      console.log("Error while Fetching all the codes  of User ", error);
     } finally {
       setLoading(false);
     }
@@ -119,11 +112,9 @@ const YourCodes = () => {
     try {
       const url = `${baseUrl}/like/add/${id}`;
       const response = await axios.post(url, {}, { withCredentials: true });
-      console.log("Response while Liking ", response);
       toast.success(response.data.message);
       getAllCodes(currentPage);
     } catch (error: any) {
-      console.log("Error while Liking codes:", error);
       toast.error(error.response.data.message);
     }
   };
@@ -151,9 +142,7 @@ const YourCodes = () => {
         return matchesLanguage && matchesTag;
       });
       setFilterCodes(filterCodes);
-    } catch (error) {
-      console.log("Error while filtering codes : ", error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -337,7 +326,7 @@ const YourCodes = () => {
                   >
                     {" "}
                     {item.likes.some(
-                      (like) => like.userId === loggedInUserId
+                      (like) => like.userId === loggedInUserId,
                     ) ? (
                       <ThumbsUp size={18} className="text-purple-600" />
                     ) : (

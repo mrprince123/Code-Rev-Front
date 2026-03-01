@@ -107,8 +107,6 @@ const FullPublicCode = () => {
         { withCredentials: true },
       );
 
-      console.log("Response while Adding Comment ", response);
-
       toast.success(response.data.message);
       // Refresh the code details to show the updated comment
       fetchFullCode();
@@ -116,7 +114,6 @@ const FullPublicCode = () => {
       setComments(""); // Clear the comment field
       setRating(""); // Clear the rating field
     } catch (error: any) {
-      console.log("Error while Added Comment ", error);
       toast.error(error.response.data.message);
     }
   };
@@ -128,7 +125,6 @@ const FullPublicCode = () => {
         withCredentials: true,
       });
       setCodeDetails(response.data.data);
-      console.log("Full Code Details ", response);
     } catch (error) {
       console.error("Error fetching full code details:", error);
     }
@@ -141,9 +137,7 @@ const FullPublicCode = () => {
       const url = `${baseUrl}/code/all/public?limit=${limit}`;
       const response = await axios.get(url, { withCredentials: true });
       setRecentCode(response.data.data);
-    } catch (error) {
-      console.log("Error while fetching codes:", error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -284,7 +278,7 @@ const FullPublicCode = () => {
           text: `View the code snippet here:`,
           url: window.location.href,
         })
-        .then(() => console.log("Shared successfully"))
+        .then(() => {})
         .catch((error) => console.error("Error sharing:", error));
     } else {
       alert("Sharing is not supported on this device.");
@@ -296,11 +290,9 @@ const FullPublicCode = () => {
     try {
       const url = `${baseUrl}/review/delete/${id}`;
       const response = await axios.delete(url, { withCredentials: true });
-      console.log("Response while deleting Comment ", response);
       toast.success(response.data.message);
       fetchFullCode();
     } catch (error: any) {
-      console.log("Error while deleting the Comment ", error);
       toast.error(error.response.data.message);
     }
   };
@@ -320,7 +312,6 @@ const FullPublicCode = () => {
         { comment, rating },
         { withCredentials: true },
       );
-      console.log("Response while deleting Comment ", response);
 
       // Refresh the code details to show the updated comment
       fetchFullCode();
@@ -330,7 +321,6 @@ const FullPublicCode = () => {
       toast.success(response.data.message);
       setModelOpen(false);
     } catch (error: any) {
-      console.log("Error while deleting the Comment ", error);
       toast.error(error.response.data.message);
     }
   };

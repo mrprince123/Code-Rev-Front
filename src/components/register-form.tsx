@@ -17,9 +17,8 @@ export function RegisterForm() {
       const response = await axios.post(
         url,
         { name, email, password },
-        { withCredentials: true }
+        { withCredentials: true },
       );
-      console.log("Response ", response);
       toast.success(response.data.message);
       navigate("/login");
     } catch (error: any) {
